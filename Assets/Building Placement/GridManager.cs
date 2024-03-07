@@ -6,30 +6,36 @@ namespace Building_Placement
 {
     public class GridManager : SimpleSingleton<GridManager>
     {
+	    [SerializeField] private int xSize;
+	    [SerializeField] private int zSize;
+	    [SerializeField] private int cellSize;
+	    
 	    private BuildingGrid<Turret> _grid;
-	    private int                  _cellSize;
 
 	    private void Awake()
 	    {
-		    _grid     = GetComponent<BuildingGrid<Turret>>();
-		    _cellSize = _grid.CellSize();
+		    _grid = new BuildingGrid<Turret>(xSize, zSize, cellSize);
+		    _grid.SetCellSize(cellSize);
+		    _grid.SetSizeX(xSize);
+		    _grid.SetSizeZ(zSize);
 	    }
 	    
-	    public void PlaceTurret(Vector3 worldCoordinates, Turret turretToPlace)
+	    public void PlaceTurret(Vector3 worldCoordinates, Turret turretToPlace, out Vector3 objectWorldCoordinates, out int ok)
 	    {
 		    GetGridRelativePosition(worldCoordinates, out var xCoordinate, out var zCoordinate);
-		    _grid.SetGridValue(xCoordinate, zCoordinate, turretToPlace);
+		    _grid.SetGridValue(xCoordinate, zCoordinate, turretToPlace, out ok);
+		    objectWorldCoordinates = GetWorldPosition(xCoordinate, zCoordinate);
 	    }
 	    
 	    private Vector3 GetWorldPosition(int xCoordinate, int zCoordinate)
 	    {
-		    return new Vector3(xCoordinate, 0f, zCoordinate) * _cellSize;
+		    return new Vector3(xCoordinate, 0f, zCoordinate) * cellSize;
 	    }
 
 	    private void GetGridRelativePosition(Vector3 worldPosition, out int xCoordinate, out int zCoordinate)
 	    {
-		    xCoordinate = Mathf.FloorToInt(worldPosition.x / _cellSize);
-		    zCoordinate = Mathf.FloorToInt(worldPosition.z / _cellSize);
+		    xCoordinate = Mathf.FloorToInt(worldPosition.x / cellSize);
+		    zCoordinate = Mathf.FloorToInt(worldPosition.z / cellSize);
 	    }
     }
 }
