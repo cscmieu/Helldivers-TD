@@ -1,11 +1,14 @@
+using Singletons;
 using Turrets.Scripts;
 using UnityEngine;
 
 namespace Building_Placement
 {
-    public class TurretPlacer : MonoBehaviour
+    public class TurretPlacer : SimpleSingleton<TurretPlacer>
     {
         [SerializeField] private Turret turretToPlace;
+        
+        private                  bool   _placing;
         
         public void PlaceTurret()
         {
@@ -21,14 +24,35 @@ namespace Building_Placement
                 default:
                 {
                     var instantiatedTurret = Instantiate(turretToPlace.gameObject, worldCoordinates, Quaternion.identity);
+                    DisablePlacing();
                     break;
                 }
             }
         }
 
+        public void SelectTurret(Turret newTurret)
+        {
+            turretToPlace = newTurret;
+        }
+
+        public void EnablePlacing()
+        {
+            _placing = true;
+        }
+        
+        public void DisablePlacing()
+        {
+            _placing = false;
+        }
+
+        public bool GetPlacingState()
+        {
+            return _placing;
+        }
+        
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && _placing)
             {
                 PlaceTurret();
             }

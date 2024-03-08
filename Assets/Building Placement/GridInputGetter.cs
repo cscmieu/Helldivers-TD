@@ -15,7 +15,7 @@ namespace Building_Placement
         public Vector3 GetInput()
         {
             var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-            return Physics.Raycast(ray, out var hit) ? hit.point : Vector3.zero;
+            return Physics.Raycast(ray, out var hit) ? hit.point : new Vector3(-1f,0f,-1f);
         }
     }
 }

@@ -23,13 +23,15 @@ namespace Building_Placement
 	    public void PlaceTurret(Vector3 worldCoordinates, Turret turretToPlace, out Vector3 objectWorldCoordinates, out int ok)
 	    {
 		    GetGridRelativePosition(worldCoordinates, out var xCoordinate, out var zCoordinate);
+		    turretToPlace.SetPositionX(xCoordinate);
+		    turretToPlace.SetPositionZ(zCoordinate);
 		    _grid.SetGridValue(xCoordinate, zCoordinate, turretToPlace, out ok);
 		    objectWorldCoordinates = GetWorldPosition(xCoordinate, zCoordinate);
 	    }
 	    
 	    private Vector3 GetWorldPosition(int xCoordinate, int zCoordinate)
 	    {
-		    return new Vector3(xCoordinate, 0f, zCoordinate) * cellSize;
+		    return new Vector3(xCoordinate + cellSize/2f, 0f, zCoordinate + cellSize/2f) * cellSize;
 	    }
 
 	    private void GetGridRelativePosition(Vector3 worldPosition, out int xCoordinate, out int zCoordinate)
