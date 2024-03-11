@@ -8,7 +8,7 @@ namespace Enemy
         public string prefabName;
 
         public float speed; // Enemy movement speed.
-        public float hitPoints; // Enemy max health on initialization.
+        public int maxHitPoints; // Enemy max health on initialization.
         public float score; // Score gained (or lost) on enemy death.
         public float money; // Money gained on enemy death.
     }

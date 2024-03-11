@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4502790485155929992}
   - component: {fileID: 366790127416970110}
   - component: {fileID: -3202454305323979178}
+  - component: {fileID: 2944017770083481432}
   - component: {fileID: -5284173327812208689}
   m_Layer: 0
   m_Name: EnemyBase
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9e34c43c25f8248964d3135c3c23e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHitPoints: 0
 --- !u!114 &-3202454305323979178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +62,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   destinationPoint: {fileID: 0}
+--- !u!114 &2944017770083481432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6035341643593149020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26aeb75b49c5b03489cad6835bae97ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  money: 0
+  enemyData: {fileID: 0}
+  healthManager: {fileID: 366790127416970110}
+  enemyBehavior: {fileID: -3202454305323979178}
 --- !u!195 &-5284173327812208689
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -32,5 +32,17 @@ namespace Enemy
         {
             agent.SetDestination(destinationPoint.position);
         }
+
+
+        #region Getters and Setters
+
+        public void SetSpeed(float newSpeed)
+        {
+            agent.speed = newSpeed;
+        }
+
+        #endregion
+        
+        
     }
 }

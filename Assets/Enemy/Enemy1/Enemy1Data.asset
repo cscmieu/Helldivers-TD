@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabName: Enemy1
   speed: 2
-  hitPoints: 5
+  maxHitPoints: 20
   score: 10
   money: 5
