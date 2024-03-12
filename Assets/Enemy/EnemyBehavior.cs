@@ -17,6 +17,7 @@ namespace Enemy
         private void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
+            destinationPoint = GameObject.Find("Destination").GetComponent<Transform>(); // Might be upgradable.
         }
 
 
