@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using Building_Placement;
 using Enemy;
 using UnityEngine;
@@ -7,33 +7,42 @@ namespace Turrets.Scripts.Common
 {
     public class Turret : GridItem
     {
-        protected float     range;
-        protected int     damagePerHit;
-        protected float     shotsPerSecond;
-        protected int       level;
-        protected EnemyHealthManager target;
-        protected Transform selfTransform;
-        protected LayerMask enemyLayer;
-        protected float     lastTimeShot;
+        [SerializeField] protected TurretScriptableObject   turretData;
+        [SerializeField] protected Transform                muzzlePoint;
+        [SerializeField] protected LayerMask                enemyLayer;
+        protected                  float                    range;
+        protected                  int                      damagePerHit;
+        protected                  float                    timeBetweenShots;
+        protected                  int                      level;
+        protected                  Transform                selfTransform;
+        protected                  float                    lastTimeShot;
+        protected                  SphereCollider           targettingArea;
+        [SerializeField] protected                  List<EnemyHealthManager> targetList = new List<EnemyHealthManager>();
         
-        private void Awake()
+        protected void Awake()
         {
-            selfTransform = transform;
-        }
-
-        private void Update()
-        {
-            lastTimeShot -= Time.deltaTime;
+            selfTransform          = transform;
+            range                  = turretData.range;
+            damagePerHit           = turretData.damagePerBullet;
+            timeBetweenShots       = 1 / turretData.shotsPerSecond;
+            targettingArea        = GetComponent<SphereCollider>();
+            targettingArea.radius = range;
         }
 
         public virtual void Shoot() {}
 
-        protected void AssessTarget()
+        protected void OnTriggerEnter(Collider other)
         {
-            if (target && (target.transform.position - selfTransform.position).magnitude < range) return; // Target id Valid
-            Physics.SphereCast(selfTransform.position, range, Vector3.forward, out var HitInfo, 0f, enemyLayer);
-            if (HitInfo.transform.TryGetComponent<EnemyHealthManager>(out var healthManager))
-                target = healthManager;
+            if (!other.TryGetComponent<EnemyHealthManager>(out var enemy)) return;
+            targetList.Add(enemy);
         }
+        
+        protected void OnTriggerExit(Collider other)
+        {
+            if (!other.TryGetComponent<EnemyHealthManager>(out var enemy)) return;
+            targetList.Remove(enemy);
+        }
+
+        public virtual void LevelUp() {}
     }
 }

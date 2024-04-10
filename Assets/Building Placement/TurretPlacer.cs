@@ -7,13 +7,13 @@ namespace Building_Placement
 {
     public class TurretPlacer : SimpleSingleton<TurretPlacer>
     {
-        [SerializeField] private Turret turretToPlace;
-        
-        private                  bool   _placing;
+        private Turret _turretToPlace;
+        private bool   _placing;
+
         
         public void PlaceTurret()
         {
-            GridManager.Instance.PlaceTurret(GridInputGetter.Instance.GetInput(),turretToPlace, out var worldCoordinates, out var ok);
+            GridManager.Instance.PlaceTurret(GridInputGetter.Instance.GetInput(),_turretToPlace, out var worldCoordinates, out var ok);
             switch (ok)
             {
                 case -1:
@@ -24,7 +24,7 @@ namespace Building_Placement
                     return;
                 default:
                 {
-                    var instantiatedTurret = Instantiate(turretToPlace.gameObject, worldCoordinates, Quaternion.identity);
+                    var instantiatedTurret = Instantiate(_turretToPlace.gameObject, worldCoordinates, Quaternion.identity);
                     DisablePlacing();
                     break;
                 }
@@ -33,7 +33,7 @@ namespace Building_Placement
 
         public void SelectTurret(Turret newTurret)
         {
-            turretToPlace = newTurret;
+            _turretToPlace = newTurret;
         }
 
         public void EnablePlacing()

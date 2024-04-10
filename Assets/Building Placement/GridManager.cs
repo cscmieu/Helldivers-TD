@@ -32,7 +32,7 @@ namespace Building_Placement
 	    
 	    private Vector3 GetWorldPosition(int xCoordinate, int zCoordinate)
 	    {
-		    return new Vector3(xCoordinate + cellSize/2f, 0f, zCoordinate + cellSize/2f) * cellSize;
+		    return new Vector3(xCoordinate + cellSize/2f, .5f, zCoordinate + cellSize/2f) * cellSize;
 	    }
 
 	    private void GetGridRelativePosition(Vector3 worldPosition, out int xCoordinate, out int zCoordinate)
