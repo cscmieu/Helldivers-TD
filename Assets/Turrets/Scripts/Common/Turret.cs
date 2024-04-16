@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Building_Placement;
 using Enemy;
+using Enemy.Scripts;
 using UnityEngine;
 
 namespace Turrets.Scripts.Common

@@ -1,15 +1,14 @@
-using System;
 using UnityEngine;
 
-namespace Enemy
+namespace Enemy.Scripts
 {
     public class EnemyControl : MonoBehaviour
     {
         #region References
 
         [Header("References")] 
-        [SerializeField] private float score; // NYI
-        [SerializeField] private float money; // NYI
+        [SerializeField] private int score; // NYI
+        [SerializeField] private int money; // NYI
         
         [Header("Script References")] 
         [SerializeField] private EnemyDataScriptable enemyData;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Spawner
+namespace Spawner.Scripts
 {
     public class Spawner : MonoBehaviour
     {

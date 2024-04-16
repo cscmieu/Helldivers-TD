@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Enemy
+namespace Enemy.Scripts
 {
     public class EnemyHealthManager : MonoBehaviour
     {
