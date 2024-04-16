@@ -130,7 +130,7 @@ Transform:
   m_GameObject: {fileID: 4666794936032243302}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -148,7 +148,8 @@ GameObject:
   - component: {fileID: 3709316515699317817}
   - component: {fileID: 6678305005040613438}
   - component: {fileID: 8139808588822308662}
-  - component: {fileID: 6542469246319826222}
+  - component: {fileID: 1684782651009592527}
+  - component: {fileID: -1308700149561248513}
   m_Layer: 0
   m_Name: Sniper Turret
   m_TagString: Untagged
@@ -183,7 +184,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -307,7 +308,7 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &6542469246319826222
+--- !u!114 &1684782651009592527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,17 +317,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 6769841488979678711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9dbcc203a29324397208c8ba82a1e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 18b48c6d41d5f2d4cbad1b612cbde7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPosition: 0
-  zPosition: 0
+  xPosition: 2
+  zPosition: 9
   turretData: {fileID: 11400000, guid: a485c663202c14e44acf74c4ed3bf912, type: 2}
   muzzlePoint: {fileID: 862181658678320046}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
   targetList: []
+--- !u!54 &-1308700149561248513
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6769841488979678711}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8207548290795538012
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +380,7 @@ Transform:
   m_GameObject: {fileID: 8207548290795538012}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 0, z: 0}
+  m_LocalPosition: {x: 0.4, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

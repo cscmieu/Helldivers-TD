@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,29 +9,25 @@ namespace Enemy.Scripts
         #region References
 
         [Header("References")] 
-        [SerializeField] private NavMeshAgent agent;
-        [SerializeField] private Transform destinationPoint;
+        private NavMeshAgent _agent;
+        private Transform _destinationPoint;
 
         #endregion
         
         private void Awake()
         {
-            agent = GetComponent<NavMeshAgent>();
-            destinationPoint = GameObject.Find("Destination").GetComponent<Transform>(); // Might be upgradable.
+            _agent = GetComponent<NavMeshAgent>();
         }
 
-
-        // Start is called before the first frame update
         private void Start()
         {
-        
+            _agent.SetDestination(_destinationPoint.position);
         }
 
-        
-        // Update is called once per frame
-        private void Update()
+
+        public void SetDestination(Transform target)
         {
-            agent.SetDestination(destinationPoint.position);
+            _destinationPoint = target;
         }
 
 
@@ -38,7 +35,7 @@ namespace Enemy.Scripts
 
         public void SetSpeed(float newSpeed)
         {
-            agent.speed = newSpeed;
+            _agent.speed = newSpeed;
         }
 
         #endregion

@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Ennemis
-  - 
-  - 
+  - Enemies
+  - EnemyPath
+  - TurretEmplacement
   - 
   - 
   - 

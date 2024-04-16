@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemy.Scripts;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -12,7 +13,8 @@ namespace Spawner.Scripts
         [Header("References")]
         // Operation handle used to load and release assets
         private AsyncOperationHandle<IList<GameObject>> _loadHandle;
-        [SerializeField] private float spawnCooldown;
+        [SerializeField] private float     spawnCooldown;
+        [SerializeField] private Transform destination;
         
         
         // Load Addressables by Label
@@ -36,8 +38,12 @@ namespace Spawner.Scripts
             {
                 yield return new WaitForSeconds(spawnCooldown);
 
-                GameObject enemy = _loadHandle.Result[Random.Range(0, _loadHandle.Result.Count)];
-                Instantiate(enemy, transform.position, Quaternion.identity, transform);
+                var enemy = _loadHandle.Result[Random.Range(0, _loadHandle.Result.Count)];
+                var instantiatedEnemy = Instantiate(enemy, transform.position, Quaternion.identity, transform);
+                if (instantiatedEnemy.TryGetComponent<EnemyBehavior>(out var enemyScript))
+                {
+                    enemyScript.SetDestination(destination);
+                }
             }
         }
         
@@ -45,13 +51,6 @@ namespace Spawner.Scripts
         private void OnDestroy()
         {
             Addressables.Release(_loadHandle);
-        }
-        
-        
-        // Update is called once per frame
-        private void Update()
-        {
-            
         }
 
         #region Getters and Setters
