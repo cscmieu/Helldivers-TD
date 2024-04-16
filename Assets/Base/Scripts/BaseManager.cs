@@ -1,4 +1,6 @@
 using System;
+using Enemy.Scripts;
+using Scoring.Scripts;
 using UnityEngine;
 
 namespace Base.Scripts
@@ -20,6 +22,7 @@ namespace Base.Scripts
         private void OnTriggerEnter(Collider other)
         {
             Destroy(other.gameObject);
+            ScoreManager.Instance.ScoreByEndOfPath(other.GetComponent<EnemyControl>().GetScore());
         }
     }
 }

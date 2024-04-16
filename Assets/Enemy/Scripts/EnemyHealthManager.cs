@@ -1,3 +1,4 @@
+using Scoring.Scripts;
 using UnityEngine;
 
 namespace Enemy.Scripts
@@ -28,14 +29,18 @@ namespace Enemy.Scripts
 
             if (_currentHitPoints <= 0)
             {
-                Death();
+                Death(); // Killed by a turret.
             }
         }
 
+        /*
+         * What happens when an enemy is killed by a turret.
+         */
         private void Death()
         {
             Destroy(gameObject);
-            // Triggers EnemyControl.OnDestroy().
+            ScoreManager.Instance.ScoreByDeath(GetComponent<EnemyControl>().GetScore());
+            MoneyManager.Instance.AddMoney(GetComponent<EnemyControl>().GetMoney());
         }
 
         

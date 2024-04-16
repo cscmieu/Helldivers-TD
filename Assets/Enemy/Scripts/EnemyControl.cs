@@ -7,8 +7,8 @@ namespace Enemy.Scripts
         #region References
 
         [Header("References")] 
-        [SerializeField] private int score; // NYI
-        [SerializeField] private int money; // NYI
+        private int _score; // NYI
+        private int _money; // NYI
         
         [Header("Script References")] 
         [SerializeField] private EnemyDataScriptable enemyData;
@@ -19,8 +19,8 @@ namespace Enemy.Scripts
 
         private void Awake()
         {
-            score = enemyData.score;
-            money = enemyData.money;
+            _score = enemyData.score;
+            _money = enemyData.money;
         }
 
         // Start is called before the first frame update
@@ -36,11 +36,19 @@ namespace Enemy.Scripts
         
         }
 
-        private void OnDestroy()
+        #region Getters and Setters
+
+        public int GetScore()
         {
-            // What happens when enemy dies.
-            // Score and money somewhere.
-            // Distinguish death by out of HP or by reaching end line.
+            return _score;
         }
+
+
+        public int GetMoney()
+        {
+            return _money;
+        }
+
+        #endregion
     }
 }
