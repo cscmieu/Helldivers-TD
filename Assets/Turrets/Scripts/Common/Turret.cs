@@ -1,99 +1,67 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Building_Placement;
-using Enemy;
 using Enemy.Scripts;
 using UnityEngine;
 
 namespace Turrets.Scripts.Common
 {
-    public class Turret : GridItem
+    public class Turret : MonoBehaviour
     {
-        [SerializeField] protected TurretScriptableObject   turretData;
-        [SerializeField] protected Transform                muzzlePoint;
-        [SerializeField] protected List<EnemyHealthManager> targetList = new List<EnemyHealthManager>();
-        protected                  float                    range;
-        protected                  int                      damagePerHit;
-        protected                  float                    timeBetweenShots;
-        protected                  int                      level;
-        protected                  float                    lastTimeShot;
-        protected                  SphereCollider           targettingArea;
-        private                    TrailRenderer            _bulletTracer;
+        [SerializeField] private TurretScriptableObject turretData;
+        [SerializeField] private LayerMask              enemyLayer;
+        private                  EnemyHealthManager     _target;
+        private                  float                  _range;
+        private                  int                    _damagePerHit;
+        private                  float                  _timeBetweenShots;
+        private                  int                    _level;
+        private                  float                  _lastTimeShot;
         
-        protected void Awake()
+        private void Awake()
         {
-            range                 = turretData.range;
-            damagePerHit          = turretData.damagePerBullet;
-            timeBetweenShots      = 1f / turretData.shotsPerSecond;
-            targettingArea        = GetComponent<SphereCollider>();
-            targettingArea.radius = range;
-            _bulletTracer         = GetComponent<TrailRenderer>();
+            _range                 = turretData.range;
+            _damagePerHit          = turretData.damagePerBullet;
+            _timeBetweenShots      = 1f / turretData.shotsPerSecond;
         }
 
         private void Update()
         {
-            lastTimeShot -= Time.deltaTime;
+            _lastTimeShot -= Time.deltaTime;
+            AssessTarget();
             Shoot();
         }
 
-        public void Shoot()
+        private void Shoot()
         {
-            if (lastTimeShot > 0) return;
-            if (targetList.Count == 0) return;
-            targetList[0].TakeDamage(damagePerHit);
-            var tracer = Instantiate(_bulletTracer, muzzlePoint.position, Quaternion.identity);
-            StartCoroutine(GenerateTracer(tracer, targetList[0].transform.position));
-            lastTimeShot = timeBetweenShots;
-        }
-        
-        private IEnumerator GenerateTracer(TrailRenderer trail, Vector3 hitPoint)
-        {
-            var time          = 0f;
-            var startingPoint = trail.transform.position;
-
-            while (time < 1)
-            {
-                trail.transform.position =  Vector3.Lerp(startingPoint, hitPoint, time);
-                time                     += Time.deltaTime / trail.time;
-                yield return null;
-            }
-
-            trail.transform.position = hitPoint;
-            Destroy(trail.gameObject, trail.time);
+            if (_lastTimeShot > 0) return;
+            if (_target is null) return; //Check if target is valid
+            _target.TakeDamage(_damagePerHit);
+            _lastTimeShot = _timeBetweenShots;
         }
 
-        protected void OnTriggerEnter(Collider other)
+        private void AssessTarget()
         {
-            if (!other.TryGetComponent<EnemyHealthManager>(out var enemy)) return;
-            targetList.Add(enemy);
-            Debug.Log("Added Enemy");
-        }
-        
-        protected void OnTriggerExit(Collider other)
-        {
-            if (!other.TryGetComponent<EnemyHealthManager>(out var enemy)) return;
-            targetList.Remove(enemy);
-            Debug.Log("Removed Enemy");
+            if (_target is not null && !_target.IsDoomed()) return; // Already have a living target
+            var enemiesInRange = Physics.OverlapSphere(transform.position, _range, enemyLayer);
+            if (enemiesInRange.Length == 0) return; // No Enemies in Range
+            if (!enemiesInRange[0].TryGetComponent<EnemyHealthManager>(out var enemyHealth)) 
+                Debug.LogError("Enemy doesn't have HealthManager"); // Failsafe if an Enemy has no health manager script
+            _target = enemyHealth;
         }
 
         public void LevelUp()
         {
-            level++;
-            switch (level)
+            _level++;
+            switch (_level)
             {
                 case 1 :
-                    damagePerHit = 15;
+                    _damagePerHit = 15;
                     break;
                 case 2 :
-                    timeBetweenShots = 1;
+                    _timeBetweenShots = 1;
                     break;
                 case 3 :
-                    damagePerHit = 20;
+                    _damagePerHit = 20;
                     break;
                 case 4 :
-                    range                 = 10;
-                    targettingArea.radius = 10;
+                    _range                 = 10;
                     break;
             }
         }

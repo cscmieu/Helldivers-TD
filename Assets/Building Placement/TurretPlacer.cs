@@ -1,5 +1,4 @@
 using Singletons;
-using Turrets.Scripts;
 using Turrets.Scripts.Common;
 using UnityEngine;
 
@@ -11,24 +10,12 @@ namespace Building_Placement
         private bool   _placing;
 
         
-        public void PlaceTurret()
+        private void PlaceTurret()
         {
-            GridManager.Instance.PlaceTurret(GridInputGetter.Instance.GetInput(),_turretToPlace, out var worldCoordinates, out var ok);
-            switch (ok)
-            {
-                case -1:
-                    Debug.Log("Square Out Of Bounds !");
-                    return;
-                case 1:
-                    Debug.Log("Square Occupied !");
-                    return;
-                default:
-                {
-                    var instantiatedTurret = Instantiate(_turretToPlace.gameObject, worldCoordinates, Quaternion.identity);
-                    DisablePlacing();
-                    break;
-                }
-            }
+            DisablePlacing();
+            var ok = PlacementInputGetter.Instance.GetInput(out var position);
+            if (!ok) return;
+            Instantiate(_turretToPlace.gameObject, position, Quaternion.identity);
         }
 
         public void SelectTurret(Turret newTurret)

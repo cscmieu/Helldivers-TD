@@ -110,9 +110,9 @@ Transform:
   m_GameObject: {fileID: 3515400586468545587}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4415363676746894403}
   m_Father: {fileID: 2167525086585869997}
@@ -176,8 +176,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -5284173327812208689, guid: e50c35e582c9e7b40848ff91b4db0eb8, type: 3}
+      propertyPath: m_Height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5284173327812208689, guid: e50c35e582c9e7b40848ff91b4db0eb8, type: 3}
+      propertyPath: m_Radius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -5284173327812208689, guid: e50c35e582c9e7b40848ff91b4db0eb8, type: 3}
       propertyPath: m_BaseOffset
-      value: -0.083333
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2944017770083481432, guid: e50c35e582c9e7b40848ff91b4db0eb8, type: 3}
       propertyPath: enemyData
@@ -267,7 +275,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.25
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}

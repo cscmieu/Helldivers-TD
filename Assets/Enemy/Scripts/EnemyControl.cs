@@ -21,19 +21,8 @@ namespace Enemy.Scripts
         {
             _score = enemyData.score;
             _money = enemyData.money;
-        }
-
-        // Start is called before the first frame update
-        private void Start()
-        {
-            healthManager.SetMaxHitPoints(enemyData.maxHitPoints);
+            healthManager.SetHitPoints(enemyData.maxHitPoints);
             enemyBehavior.SetSpeed(enemyData.speed);
-        }
-
-        // Update is called once per frame
-        private void Update()
-        {
-        
         }
 
         #region Getters and Setters

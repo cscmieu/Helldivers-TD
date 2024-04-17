@@ -15,4 +15,4 @@ MonoBehaviour:
   turretName: Sniper Turret
   range: 5
   damagePerBullet: 10
-  shotsPerSecond: 0.5
+  shotsPerSecond: 10

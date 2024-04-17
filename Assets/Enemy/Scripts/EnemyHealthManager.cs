@@ -1,61 +1,60 @@
+using System;
 using Scoring.Scripts;
 using UnityEngine;
 
 namespace Enemy.Scripts
 {
     public class EnemyHealthManager : MonoBehaviour
-    {
-        [SerializeField] private int maxHitPoints;
+    { 
+        private int          _currentHitPoints;
+        private EnemyControl _enemyControl;
+        private bool         _doomed;
 
-        private int _currentHitPoints;
-        
-        // Start is called before the first frame update.
-        private void Start()
+        private void Awake()
         {
-            _currentHitPoints = maxHitPoints;
+            _enemyControl = GetComponent<EnemyControl>();
         }
 
-        
-        // Update is called once per frame.
-        private void Update()
-        {
-            
-        }
-
-        
         public void TakeDamage(int damageValue)
         {
             _currentHitPoints -= damageValue;
 
             if (_currentHitPoints <= 0)
             {
-                Death(); // Killed by a turret.
+                _doomed = true; // Set to be killed at the end of frame
             }
         }
 
         /*
-         * What happens when an enemy is killed by a turret.
+         * What happens when an enemy is killed by a turret
          */
-        private void Death()
+        private void LateUpdate()
         {
-            Destroy(gameObject);
-            ScoreManager.Instance.ScoreByDeath(GetComponent<EnemyControl>().GetScore());
-            MoneyManager.Instance.AddMoney(GetComponent<EnemyControl>().GetMoney());
+            if (!_doomed) return;
+            gameObject.SetActive(false);
+            Destroy(gameObject, 1f);
+            ScoreManager.Instance.ScoreByDeath(_enemyControl.GetScore());
+            MoneyManager.Instance.AddMoney(_enemyControl.GetMoney());
         }
 
         
-        #region Getters and Setters
+        #region Getters & Setters
 
-        public int GetCurrentHitPoints()
+        public int GetHitPoints()
         {
             return _currentHitPoints;
         }
         
-        
-        public void SetMaxHitPoints(int newMaxHitPoints)
+        public bool IsDoomed()
         {
-            maxHitPoints = newMaxHitPoints;
+            return _doomed;
         }
+        
+        public void SetHitPoints(int newHitPoints)
+        {
+            _currentHitPoints = newHitPoints;
+        }
+
 
         #endregion
         
