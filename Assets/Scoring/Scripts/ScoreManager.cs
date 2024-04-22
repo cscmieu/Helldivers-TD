@@ -1,4 +1,5 @@
 using Singletons;
+using UI.Scripts;
 using UnityEngine;
 
 namespace Scoring.Scripts
@@ -40,7 +41,8 @@ namespace Scoring.Scripts
         public void AddScore(int value)
         {
             _currentScore += value;
-            // Will update UI.
+            UIManager.Instance.UpdateScoreText(_currentScore);
+            UIManager.Instance.UpdateMultText(_currentMult);
         }
 
         

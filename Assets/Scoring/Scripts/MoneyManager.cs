@@ -1,4 +1,5 @@
 using Singletons;
+using UI.Scripts;
 using UnityEngine;
 
 namespace Scoring.Scripts
@@ -34,7 +35,7 @@ namespace Scoring.Scripts
         public void AddMoney(int value)
         {
             _currentMoney += value;
-            // Will update UI.
+            UIManager.Instance.UpdateMoneyText(_currentMoney);
         }
         
         
