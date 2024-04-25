@@ -17,7 +17,7 @@ namespace Scoring.Scripts
         // Start is called before the first frame update
         private void Start()
         {
-            SetMoney(0);
+            SetMoney(100);
         }
 
         
