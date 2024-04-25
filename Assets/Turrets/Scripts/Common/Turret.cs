@@ -1,3 +1,4 @@
+using System.Collections;
 using Enemy.Scripts;
 using UnityEngine;
 
@@ -7,18 +8,24 @@ namespace Turrets.Scripts.Common
     {
         [SerializeField] private TurretScriptableObject turretData;
         [SerializeField] private LayerMask              enemyLayer;
+        [SerializeField] private Transform              muzzlePoint;
+        [SerializeField] private TrailRenderer          bulletTracer;
         private                  EnemyHealthManager     _target;
         private                  float                  _range;
         private                  int                    _damagePerHit;
         private                  float                  _timeBetweenShots;
         private                  int                    _level;
         private                  float                  _lastTimeShot;
-        
+        private                  Camera                 _mainCamera;
+        private                  Transform              _mainCameraTransform;
+
         private void Awake()
         {
             _range                 = turretData.range;
             _damagePerHit          = turretData.damagePerBullet;
             _timeBetweenShots      = 1f / turretData.shotsPerSecond;
+            _mainCamera = Camera.main;
+            if (_mainCamera is not null) _mainCameraTransform = _mainCamera.transform;
         }
 
         private void Update()
@@ -34,6 +41,21 @@ namespace Turrets.Scripts.Common
             if (_target is null) return; //Check if target is valid
             _target.TakeDamage(_damagePerHit);
             _lastTimeShot = _timeBetweenShots;
+            var tracer = Instantiate(bulletTracer, muzzlePoint.position, Quaternion.identity);
+            StartCoroutine(InstantiateTracer(tracer, _target.transform.position));
+        }
+
+        private IEnumerator InstantiateTracer(TrailRenderer tracer, Vector3 target)
+        {
+            var time   = 0f;
+            while (time < 1f)
+            {
+                tracer.transform.position =  Vector3.Lerp(muzzlePoint.position, target, time);
+                time                            += Time.deltaTime * tracer.time;
+                yield return null;
+            }
+            tracer.transform.position = target;
+            Destroy(tracer, tracer.time);
         }
 
         private void AssessTarget()
