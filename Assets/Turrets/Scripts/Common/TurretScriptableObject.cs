@@ -9,5 +9,6 @@ namespace Turrets.Scripts.Common
         public float range;
         public int damagePerBullet;
         public float shotsPerSecond;
+        public int turretCost;
     }
 }

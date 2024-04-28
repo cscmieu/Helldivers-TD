@@ -1,3 +1,4 @@
+using Scoring.Scripts;
 using Singletons;
 using Turrets.Scripts.Common;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Building_Placement
         private Turret _turretToPlace;
         private bool   _placing;
 
-        
+
         private void PlaceTurret()
         {
             DisablePlacing();
@@ -25,7 +26,11 @@ namespace Building_Placement
 
         public void EnablePlacing()
         {
+            if (MoneyManager.Instance.GetMoney() < _turretToPlace.GetCost()) return; // TODO : Add a visual information.
+            
             _placing = true;
+            
+            MoneyManager.Instance.AddMoney(-_turretToPlace.GetCost());
         }
         
         public void DisablePlacing()

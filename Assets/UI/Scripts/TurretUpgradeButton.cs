@@ -1,4 +1,5 @@
 using Scoring.Scripts;
+using Turrets.Scripts.Common;
 using UnityEngine;
 
 namespace UI.Scripts
@@ -9,6 +10,7 @@ namespace UI.Scripts
 
         [Header("References")]
         [SerializeField] private int turretUpgradeCost; // Need to match it with button text manually. Maybe add a script to automate it ?
+        [SerializeField] private Turret turretReference;
 
         #endregion
         
@@ -29,6 +31,7 @@ namespace UI.Scripts
             if (MoneyManager.Instance.GetMoney() < turretUpgradeCost) return; // TODO : Add a visual information.
             
             // Turret upgrade instructions.
+            turretReference.LevelUp();
             
             MoneyManager.Instance.AddMoney(-turretUpgradeCost);
         }

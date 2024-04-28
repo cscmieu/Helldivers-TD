@@ -13,6 +13,7 @@ namespace Turrets.Scripts.Common
         private                  EnemyHealthManager     _target;
         private                  float                  _range;
         private                  int                    _damagePerHit;
+        private                  int                    _turretCost;
         private                  float                  _timeBetweenShots;
         private                  int                    _level;
         private                  float                  _lastTimeShot;
@@ -23,6 +24,7 @@ namespace Turrets.Scripts.Common
         {
             _range                 = turretData.range;
             _damagePerHit          = turretData.damagePerBullet;
+            _turretCost            = turretData.turretCost;
             _timeBetweenShots      = 1f / turretData.shotsPerSecond;
             _mainCamera = Camera.main;
             if (_mainCamera is not null) _mainCameraTransform = _mainCamera.transform;
@@ -86,6 +88,11 @@ namespace Turrets.Scripts.Common
                     _range                 = 10;
                     break;
             }
+        }
+
+        public int GetCost()
+        {
+            return _turretCost;
         }
     }
 }
