@@ -26,11 +26,9 @@ namespace Building_Placement
 
         public void EnablePlacing()
         {
-            if (MoneyManager.Instance.GetMoney() < _turretToPlace.GetCost()) return; // TODO : Add a visual information.
+            //if (MoneyManager.Instance.GetMoney() < _turretToPlace.GetCost()) return; // TODO : Add a visual information.
             
             _placing = true;
-            
-            MoneyManager.Instance.AddMoney(-_turretToPlace.GetCost());
         }
         
         public void DisablePlacing()
@@ -48,6 +46,7 @@ namespace Building_Placement
             if (Input.GetKeyDown(KeyCode.Mouse0) && _placing)
             {
                 PlaceTurret();
+                //MoneyManager.Instance.AddMoney(-_turretToPlace.GetCost());
             }
         }
     }
