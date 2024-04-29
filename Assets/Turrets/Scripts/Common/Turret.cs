@@ -1,24 +1,28 @@
+using System;
 using System.Collections;
 using Enemy.Scripts;
+using Scoring.Scripts;
+using Shop.Scripts;
+using TMPro;
 using UnityEngine;
 
 namespace Turrets.Scripts.Common
 {
     public class Turret : MonoBehaviour
     {
-        [SerializeField] private TurretScriptableObject turretData;
+        public                   TurretScriptableObject turretData;
         [SerializeField] private LayerMask              enemyLayer;
         [SerializeField] private Transform              muzzlePoint;
         [SerializeField] private TrailRenderer          bulletTracer;
+        [SerializeField] private UpgradeButton          upgradeButton;
         private                  EnemyHealthManager     _target;
         private                  float                  _range;
-        private                  int                    _damagePerHit;
+        private                  float                  _damagePerHit;
         private                  int                    _turretCost;
         private                  float                  _timeBetweenShots;
-        private                  int                    _level;
+        [SerializeField] private                  int                    _level;
+        private                  int                    _levelUpCost;
         private                  float                  _lastTimeShot;
-        private                  Camera                 _mainCamera;
-        private                  Transform              _mainCameraTransform;
 
         private void Awake()
         {
@@ -26,21 +30,25 @@ namespace Turrets.Scripts.Common
             _damagePerHit          = turretData.damagePerBullet;
             _turretCost            = turretData.turretCost;
             _timeBetweenShots      = 1f / turretData.shotsPerSecond;
-            _mainCamera = Camera.main;
-            if (_mainCamera is not null) _mainCameraTransform = _mainCamera.transform;
+        }
+
+        private void Start()
+        {
+            _levelUpCost = _turretCost * (_level + 1) / 2;
+            upgradeButton.UpdateCost(_levelUpCost.ToString());
         }
 
         private void Update()
         {
             _lastTimeShot -= Time.deltaTime;
-            AssessTarget();
             Shoot();
         }
 
         private void Shoot()
         {
             if (_lastTimeShot > 0) return;
-            if (_target is null) return; //Check if target is valid
+            _target = null;
+            if (!AssessTarget()) return;
             _target.TakeDamage(_damagePerHit);
             _lastTimeShot = _timeBetweenShots;
             var tracer = Instantiate(bulletTracer, muzzlePoint.position, Quaternion.identity);
@@ -53,46 +61,56 @@ namespace Turrets.Scripts.Common
             while (time < 1f)
             {
                 tracer.transform.position =  Vector3.Lerp(muzzlePoint.position, target, time);
-                time                            += Time.deltaTime * tracer.time;
+                time                            += Time.deltaTime / tracer.time;
                 yield return null;
             }
             tracer.transform.position = target;
-            Destroy(tracer, tracer.time);
+            Destroy(tracer.gameObject, tracer.time);
+            yield return null;
         }
 
-        private void AssessTarget()
+        private bool AssessTarget()
         {
-            if (_target is not null && !_target.IsDoomed()) return; // Already have a living target
             var enemiesInRange = Physics.OverlapSphere(transform.position, _range, enemyLayer);
-            if (enemiesInRange.Length == 0) return; // No Enemies in Range
+            if (enemiesInRange.Length == 0) return false; // No Enemies in Range
             if (!enemiesInRange[0].TryGetComponent<EnemyHealthManager>(out var enemyHealth)) 
                 Debug.LogError("Enemy doesn't have HealthManager"); // Failsafe if an Enemy has no health manager script
             _target = enemyHealth;
+            return true;
         }
 
         public void LevelUp()
         {
-            _level++;
-            switch (_level)
+            if (_level > 3) return;
+            if (_levelUpCost > MoneyManager.Instance.GetMoney())
             {
-                case 1 :
-                    _damagePerHit = 15;
+                StopCoroutine(MoneyManager.Instance.DisplayWarning());
+                StartCoroutine(MoneyManager.Instance.DisplayWarning());
+                return;
+            }
+            MoneyManager.Instance.AddMoney(-_levelUpCost);
+            var newValue = turretData.upgradeValues[_level];
+            switch (turretData.upgradeStats[_level])
+            {
+                case "Damage" :
+                    _damagePerHit = newValue;
                     break;
-                case 2 :
-                    _timeBetweenShots = 1;
+                case "Range" :
+                    _range = newValue;
                     break;
-                case 3 :
-                    _damagePerHit = 20;
-                    break;
-                case 4 :
-                    _range                 = 10;
+                case "Time Between Shots" :
+                    _timeBetweenShots = newValue;
                     break;
             }
-        }
-
-        public int GetCost()
-        {
-            return _turretCost;
+            _level++;
+            if (_level > 3)
+            {
+                upgradeButton.UpdateCost("MAX");
+                upgradeButton.SwitchUpgrade();
+                return;
+            }
+            _levelUpCost = _turretCost * (_level + 1) / 2;
+            upgradeButton.UpdateCost(_levelUpCost.ToString());
         }
     }
 }

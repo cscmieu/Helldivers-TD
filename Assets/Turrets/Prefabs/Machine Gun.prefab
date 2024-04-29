@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1684782651009592527, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
       propertyPath: turretData
       value: 
-      objectReference: {fileID: 11400000, guid: a485c663202c14e44acf74c4ed3bf912, type: 2}
+      objectReference: {fileID: 11400000, guid: b4d987c67f6c40346aa3114b3cee5741, type: 2}
     - target: {fileID: 3709316515699317817, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,9 +52,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4052095128323626665, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be2b71d266b82b644b6b16160cb25af1, type: 2}
     - target: {fileID: 6769841488979678711, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
       propertyPath: m_Name
-      value: Sniper Turret
+      value: Machine Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 7064509617174606791, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
+      propertyPath: m_Color.b
+      value: 0.46274513
+      objectReference: {fileID: 0}
+    - target: {fileID: 7064509617174606791, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 7064509617174606791, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7960785
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

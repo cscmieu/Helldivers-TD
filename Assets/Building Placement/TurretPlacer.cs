@@ -1,3 +1,4 @@
+using System.Collections;
 using Scoring.Scripts;
 using Singletons;
 using Turrets.Scripts.Common;
@@ -7,8 +8,8 @@ namespace Building_Placement
 {
     public class TurretPlacer : SimpleSingleton<TurretPlacer>
     {
-        private Turret _turretToPlace;
-        private bool   _placing;
+        private                  Turret     _turretToPlace;
+        private                  bool       _placing;
 
 
         private void PlaceTurret()
@@ -26,9 +27,13 @@ namespace Building_Placement
 
         public void EnablePlacing()
         {
-            //if (MoneyManager.Instance.GetMoney() < _turretToPlace.GetCost()) return; // TODO : Add a visual information.
-            
-            _placing = true;
+            if (MoneyManager.Instance.GetMoney() >= _turretToPlace.turretData.turretCost)
+            {
+                _placing = true;
+                return;
+            }
+            StopCoroutine(MoneyManager.Instance.DisplayWarning());
+            StartCoroutine(MoneyManager.Instance.DisplayWarning());
         }
         
         public void DisablePlacing()
@@ -46,7 +51,7 @@ namespace Building_Placement
             if (Input.GetKeyDown(KeyCode.Mouse0) && _placing)
             {
                 PlaceTurret();
-                //MoneyManager.Instance.AddMoney(-_turretToPlace.GetCost());
+                MoneyManager.Instance.AddMoney(-_turretToPlace.turretData.turretCost);
             }
         }
     }

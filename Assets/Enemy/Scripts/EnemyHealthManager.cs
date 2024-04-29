@@ -1,12 +1,11 @@
-using System;
 using Scoring.Scripts;
 using UnityEngine;
 
 namespace Enemy.Scripts
 {
     public class EnemyHealthManager : MonoBehaviour
-    { 
-        private int          _currentHitPoints;
+    {
+        private float        _currentHitPoints;
         private EnemyControl _enemyControl;
         private bool         _doomed;
 
@@ -15,7 +14,7 @@ namespace Enemy.Scripts
             _enemyControl = GetComponent<EnemyControl>();
         }
 
-        public void TakeDamage(int damageValue)
+        public void TakeDamage(float damageValue)
         {
             _currentHitPoints -= damageValue;
 
@@ -40,7 +39,7 @@ namespace Enemy.Scripts
         
         #region Getters & Setters
 
-        public int GetHitPoints()
+        public float GetHitPoints()
         {
             return _currentHitPoints;
         }

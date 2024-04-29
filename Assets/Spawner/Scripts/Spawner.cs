@@ -36,14 +36,14 @@ namespace Spawner.Scripts
         {
             while (true)
             {
-                yield return new WaitForSeconds(spawnCooldown);
-
+                yield return new WaitForSeconds(1f);
                 var enemy = _loadHandle.Result[Random.Range(0, _loadHandle.Result.Count)];
                 var instantiatedEnemy = Instantiate(enemy, transform.position, Quaternion.identity, transform);
                 if (instantiatedEnemy.TryGetComponent<EnemyBehavior>(out var enemyScript))
                 {
                     enemyScript.SetDestination(destination);
                 }
+                yield return new WaitForSeconds(spawnCooldown);
             }
         }
         

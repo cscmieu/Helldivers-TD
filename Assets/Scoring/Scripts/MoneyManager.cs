@@ -1,5 +1,5 @@
+using System.Collections;
 using Singletons;
-using UI.Scripts;
 using UnityEngine;
 
 namespace Scoring.Scripts
@@ -9,25 +9,16 @@ namespace Scoring.Scripts
         #region References
 
         [Header("References")]
+        [SerializeField] private GameObject fundsMissingWarning;
         private int _currentMoney;
 
         #endregion
-        
-        
-        // Start is called before the first frame update
+            
         private void Start()
         {
             SetMoney(100);
         }
 
-        
-        // Update is called once per frame
-        private void Update()
-        {
-
-        }
-
-        
         /*
          * Adds the value to the current money.
          * Removes the value if value < 0.
@@ -35,7 +26,14 @@ namespace Scoring.Scripts
         public void AddMoney(int value)
         {
             _currentMoney += value;
-            UIManager.Instance.UpdateMoneyText(_currentMoney);
+        }
+        
+        public IEnumerator DisplayWarning()
+        {
+            fundsMissingWarning.SetActive(true);
+            yield return new WaitForSeconds(3f);
+            fundsMissingWarning.SetActive(false);
+            yield return null;
         }
         
         

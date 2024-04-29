@@ -1,5 +1,5 @@
 using Singletons;
-using UI.Scripts;
+using TMPro;
 using UnityEngine;
 
 namespace Scoring.Scripts
@@ -9,6 +9,7 @@ namespace Scoring.Scripts
         #region References
 
         [Header("References")] 
+        [SerializeField] private TMP_Text scoreText;
         private int _currentScore;
         private int _currentMult;
         private int _currentStreak;
@@ -18,19 +19,11 @@ namespace Scoring.Scripts
         #endregion
         
         
-        // Start is called before the first frame update
         private void Start()
         {
             SetScore(0);
             _currentMult = 1;
             _currentStreak = 0;
-        }
-
-       
-        // Update is called once per frame
-        private void Update()
-        {
-        
         }
 
         
@@ -40,9 +33,8 @@ namespace Scoring.Scripts
          */
         public void AddScore(int value)
         {
-            _currentScore += value;
-            UIManager.Instance.UpdateScoreText(_currentScore);
-            UIManager.Instance.UpdateMultText(_currentMult);
+            _currentScore  += value;
+            scoreText.text =  _currentScore.ToString();
         }
 
         
