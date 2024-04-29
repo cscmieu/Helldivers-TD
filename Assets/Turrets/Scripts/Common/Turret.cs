@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using Enemy.Scripts;
 using Scoring.Scripts;
 using Shop.Scripts;
-using TMPro;
 using UnityEngine;
 
 namespace Turrets.Scripts.Common
@@ -20,7 +18,7 @@ namespace Turrets.Scripts.Common
         private                  float                  _damagePerHit;
         private                  int                    _turretCost;
         private                  float                  _timeBetweenShots;
-        [SerializeField] private                  int                    _level;
+        private                  int                    _level;
         private                  int                    _levelUpCost;
         private                  float                  _lastTimeShot;
 
@@ -49,7 +47,7 @@ namespace Turrets.Scripts.Common
             if (_lastTimeShot > 0) return;
             _target = null;
             if (!AssessTarget()) return;
-            _target.TakeDamage(_damagePerHit);
+            _target!.TakeDamage(_damagePerHit);
             _lastTimeShot = _timeBetweenShots;
             var tracer = Instantiate(bulletTracer, muzzlePoint.position, Quaternion.identity);
             StartCoroutine(InstantiateTracer(tracer, _target.transform.position));
@@ -71,6 +69,7 @@ namespace Turrets.Scripts.Common
 
         private bool AssessTarget()
         {
+            // OverlapSphereNonAlloc marche pas T_T
             var enemiesInRange = Physics.OverlapSphere(transform.position, _range, enemyLayer);
             if (enemiesInRange.Length == 0) return false; // No Enemies in Range
             if (!enemiesInRange[0].TryGetComponent<EnemyHealthManager>(out var enemyHealth)) 

@@ -1,4 +1,3 @@
-using System.Collections;
 using Scoring.Scripts;
 using Singletons;
 using Turrets.Scripts.Common;
@@ -35,8 +34,8 @@ namespace Building_Placement
             StopCoroutine(MoneyManager.Instance.DisplayWarning());
             StartCoroutine(MoneyManager.Instance.DisplayWarning());
         }
-        
-        public void DisablePlacing()
+
+        private void DisablePlacing()
         {
             _placing = false;
         }

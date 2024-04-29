@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5260354009566897571}
@@ -513,11 +513,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5284173327812208689, guid: e50c35e582c9e7b40848ff91b4db0eb8, type: 3}
       propertyPath: m_Height
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5284173327812208689, guid: e50c35e582c9e7b40848ff91b4db0eb8, type: 3}
       propertyPath: m_Radius
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: -5284173327812208689, guid: e50c35e582c9e7b40848ff91b4db0eb8, type: 3}
       propertyPath: m_BaseOffset
@@ -525,7 +525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5284173327812208689, guid: e50c35e582c9e7b40848ff91b4db0eb8, type: 3}
       propertyPath: m_AgentTypeID
-      value: -1372625422
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2944017770083481432, guid: e50c35e582c9e7b40848ff91b4db0eb8, type: 3}
       propertyPath: enemyData

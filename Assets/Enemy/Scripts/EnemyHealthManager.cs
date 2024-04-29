@@ -30,24 +30,15 @@ namespace Enemy.Scripts
         private void LateUpdate()
         {
             if (!_doomed) return;
-            gameObject.SetActive(false);
-            Destroy(gameObject, 1f);
+            GameObject o;
+            (o = gameObject).SetActive(false);
+            Destroy(o, 1f);
             ScoreManager.Instance.ScoreByDeath(_enemyControl.GetScore());
             MoneyManager.Instance.AddMoney(_enemyControl.GetMoney());
         }
 
         
         #region Getters & Setters
-
-        public float GetHitPoints()
-        {
-            return _currentHitPoints;
-        }
-        
-        public bool IsDoomed()
-        {
-            return _doomed;
-        }
         
         public void SetHitPoints(int newHitPoints)
         {

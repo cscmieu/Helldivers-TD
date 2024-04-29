@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1508387528328777330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2963375662005563740}
+  - component: {fileID: 5734950171541070200}
+  m_Layer: 0
+  m_Name: Canvas Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2963375662005563740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508387528328777330}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2749316866384277824}
+  m_Father: {fileID: 3709316515699317817}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5734950171541070200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508387528328777330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1007a4a69439a348b1af7bdd28b8de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costText: {fileID: 2336331097240843136}
+  upgradeButton: {fileID: 2855059273922723145}
 --- !u!1 &1889695828096401164
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,18 +241,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5444554080049293189}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5312374169565588174}
   - {fileID: 9048013480466743407}
-  m_Father: {fileID: 3709316515699317817}
+  m_Father: {fileID: 2963375662005563740}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0.95}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2875941358384332762
@@ -297,7 +344,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6015449248897995598}
-  m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
+  m_LocalRotation: {x: 0.6427876, y: -0, z: -0, w: 0.7660445}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -450,7 +497,7 @@ Transform:
   m_Children:
   - {fileID: 8224217083019284893}
   - {fileID: 8099913143865524434}
-  - {fileID: 2749316866384277824}
+  - {fileID: 2963375662005563740}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1684782651009592527
@@ -471,7 +518,8 @@ MonoBehaviour:
     m_Bits: 64
   muzzlePoint: {fileID: 8099913143865524434}
   bulletTracer: {fileID: 7633483330310399424, guid: 23b5c512ee2c1894ea594f60a1551dba, type: 3}
-  upgradeButton: {fileID: 1407777316248899965}
+  upgradeButton: {fileID: 5734950171541070200}
+  _level: 0
 --- !u!54 &-1308700149561248513
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -645,7 +693,6 @@ GameObject:
   - component: {fileID: 8673395120590831422}
   - component: {fileID: 7064509617174606791}
   - component: {fileID: 5504600481764673412}
-  - component: {fileID: 1407777316248899965}
   m_Layer: 5
   m_Name: Upgrade Access
   m_TagString: Untagged
@@ -700,7 +747,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -754,7 +801,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1407777316248899965}
+      - m_Target: {fileID: 5734950171541070200}
         m_TargetAssemblyTypeName: Shop.Scripts.UpgradeButton, Assembly-CSharp
         m_MethodName: SwitchVisibility
         m_Mode: 1
@@ -766,20 +813,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1407777316248899965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8381135292861827878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1007a4a69439a348b1af7bdd28b8de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costText: {fileID: 2336331097240843136}
-  button: {fileID: 2855059273922723145}
 --- !u!1 &9193433548805485766
 GameObject:
   m_ObjectHideFlags: 0

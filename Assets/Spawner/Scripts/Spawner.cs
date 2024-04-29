@@ -15,15 +15,17 @@ namespace Spawner.Scripts
         private AsyncOperationHandle<IList<GameObject>> _loadHandle;
         [SerializeField] private float     spawnCooldown;
         [SerializeField] private Transform destination;
+        private                  Transform _transform;
         
         
-        // Load Addressables by Label
+        // Load Addressable by Label
         private IEnumerator Start()
         {
+            _transform = transform;
             _loadHandle = Addressables.LoadAssetsAsync<GameObject>(
                 "Enemy",
                 null);
-            _loadHandle.Completed += (operation) =>
+            _loadHandle.Completed += (_) =>
             {
                 StartCoroutine(SpawnEnemy());
             };
@@ -33,12 +35,12 @@ namespace Spawner.Scripts
 
         
         private IEnumerator SpawnEnemy()
-        {
+        { //Ca c'est de la merde là hein
             while (true)
             {
                 yield return new WaitForSeconds(1f);
-                var enemy = _loadHandle.Result[Random.Range(0, _loadHandle.Result.Count)];
-                var instantiatedEnemy = Instantiate(enemy, transform.position, Quaternion.identity, transform);
+                var enemy             = _loadHandle.Result[Random.Range(0, _loadHandle.Result.Count)];
+                var instantiatedEnemy = Instantiate(enemy, _transform.position, Quaternion.identity, _transform);
                 if (instantiatedEnemy.TryGetComponent<EnemyBehavior>(out var enemyScript))
                 {
                     enemyScript.SetDestination(destination);
