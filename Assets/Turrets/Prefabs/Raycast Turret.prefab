@@ -275,7 +275,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1818083605
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1130178239964404379
@@ -519,7 +519,6 @@ MonoBehaviour:
   muzzlePoint: {fileID: 8099913143865524434}
   bulletTracer: {fileID: 7633483330310399424, guid: 23b5c512ee2c1894ea594f60a1551dba, type: 3}
   upgradeButton: {fileID: 5734950171541070200}
-  _level: 0
 --- !u!54 &-1308700149561248513
 Rigidbody:
   m_ObjectHideFlags: 0
