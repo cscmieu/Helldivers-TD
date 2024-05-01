@@ -1,4 +1,6 @@
+using System.Collections;
 using Singletons;
+using TMPro;
 using UnityEngine;
 
 namespace Building_Placement
@@ -6,6 +8,7 @@ namespace Building_Placement
     public class PlacementInputGetter : SimpleSingleton<PlacementInputGetter>
     {
         [SerializeField] private LayerMask  placementLayer;
+        [SerializeField] private GameObject placementWarning;
         private                  Camera     _mainCamera;
         private                  Collider[] _turretCollisionDetectionBuffer;
         
@@ -22,11 +25,20 @@ namespace Building_Placement
             if (hit.collider.gameObject.layer == 9) return false;
             if (Physics.CheckBox(hit.point, Vector3.one, Quaternion.identity, 1 << 9))
             {
-                Debug.Log("Turret To close to another turret");
+                StopAllCoroutines();
+                StartCoroutine(DisplayWarning());
                 return false;
             }
             inputPosition = hit.point;
             return true;
+        }
+
+        private IEnumerator DisplayWarning()
+        {
+            placementWarning.SetActive(true);
+            yield return new WaitForSeconds(3f);
+            placementWarning.SetActive(false);
+            yield return null;
         }
     }
 }
