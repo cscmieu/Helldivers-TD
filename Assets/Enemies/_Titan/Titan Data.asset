@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef24cf28ca38fe046ae2c4cf8ba6a9d1, type: 3}
-  m_Name: Enemy2Data
+  m_Name: Titan Data
   m_EditorClassIdentifier: 
-  prefabName: Enemy2
-  speed: 3
-  maxHitPoints: 10
-  score: 25
-  money: 10
+  enemyName: Bile Titan
+  speed: 1
+  maxHitPoints: 500
+  score: 1000
+  money: 100

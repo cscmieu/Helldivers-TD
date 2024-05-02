@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Enemy.Scripts
+namespace Enemies.Scripts
 {
     public class EnemyBehavior : MonoBehaviour
     {
@@ -15,7 +15,8 @@ namespace Enemy.Scripts
         
         private void Awake()
         {
-            _agent = GetComponent<NavMeshAgent>();
+            _agent            = GetComponent<NavMeshAgent>();
+            _destinationPoint = Spawner.Scripts.Spawner.Instance.destination;
         }
 
         private void Start()

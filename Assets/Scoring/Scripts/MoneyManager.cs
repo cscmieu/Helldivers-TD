@@ -4,19 +4,20 @@ using UnityEngine;
 
 namespace Scoring.Scripts
 {
-    public class MoneyManager : UndestructibleSingleton<MoneyManager>
+    public class MoneyManager : SimpleSingleton<MoneyManager>
     {
         #region References
 
         [Header("References")]
         [SerializeField] private GameObject fundsMissingWarning;
-        private int _currentMoney;
+        [SerializeField] private int startingMoney = 150;
+        private                  int _currentMoney;
 
         #endregion
             
         private void Start()
         {
-            SetMoney(100);
+            SetMoney(startingMoney);
         }
 
         /*

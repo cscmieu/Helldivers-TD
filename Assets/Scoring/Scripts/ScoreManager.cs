@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Scoring.Scripts
 {
-    public class ScoreManager : UndestructibleSingleton<ScoreManager>
+    public class ScoreManager : SimpleSingleton<ScoreManager>
     {
         #region References
 

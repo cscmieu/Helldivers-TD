@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: 67a421f741e694748b5dd8f8aac18897
+  m_DefaultGroup: 01064ff5c69c8054387997ede3e41f96
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 96ab063b5def5f62f4b068a368ce73be
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -87,7 +87,9 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
-    - Enemy
+    - Swarmer
+    - Charger
+    - Titan
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 9a70ed947af195147be2327be013cfb9, type: 2}

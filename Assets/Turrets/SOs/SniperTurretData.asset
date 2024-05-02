@@ -16,7 +16,7 @@ MonoBehaviour:
   range: 5
   damagePerBullet: 10
   shotsPerSecond: 0.5
-  turretCost: 10
+  turretCost: 100
   upgradeStats:
   - Damage
   - Time Between Shots

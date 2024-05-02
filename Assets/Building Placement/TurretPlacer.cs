@@ -1,5 +1,6 @@
 using Scoring.Scripts;
 using Singletons;
+using TMPro;
 using Turrets.Scripts.Common;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Building_Placement
 {
     public class TurretPlacer : SimpleSingleton<TurretPlacer>
     {
+        [SerializeField] private TMP_Text indicationPanel;
         private                  Turret     _turretToPlace;
         private                  bool       _placing;
 
@@ -17,6 +19,7 @@ namespace Building_Placement
             var ok = PlacementInputGetter.Instance.GetInput(out var position);
             if (!ok) return;
             Instantiate(_turretToPlace.gameObject, position, Quaternion.identity);
+            MoneyManager.Instance.AddMoney(-_turretToPlace.turretData.turretCost);
         }
 
         public void SelectTurret(Turret newTurret)
@@ -29,6 +32,7 @@ namespace Building_Placement
             if (MoneyManager.Instance.GetMoney() >= _turretToPlace.turretData.turretCost)
             {
                 _placing = true;
+                DisplayIndication();
                 return;
             }
             StopCoroutine(MoneyManager.Instance.DisplayWarning());
@@ -38,11 +42,18 @@ namespace Building_Placement
         private void DisablePlacing()
         {
             _placing = false;
+            HideIndication();
         }
 
-        public bool GetPlacingState()
+        private void DisplayIndication()
         {
-            return _placing;
+            indicationPanel.gameObject.SetActive(true);
+            indicationPanel.text = "Now Placing " + _turretToPlace.turretData.turretName + ",\n\nRight Click To Cancel";
+        }
+        
+        private void HideIndication()
+        {
+            indicationPanel.gameObject.SetActive(false);
         }
         
         private void Update()
@@ -50,7 +61,10 @@ namespace Building_Placement
             if (Input.GetKeyDown(KeyCode.Mouse0) && _placing)
             {
                 PlaceTurret();
-                MoneyManager.Instance.AddMoney(-_turretToPlace.turretData.turretCost);
+            }
+            else if (Input.GetKeyDown(KeyCode.Mouse1) && _placing)
+            {
+                DisablePlacing();
             }
         }
     }

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef24cf28ca38fe046ae2c4cf8ba6a9d1, type: 3}
-  m_Name: Enemy1Data
+  m_Name: Swarmer 2 Data
   m_EditorClassIdentifier: 
-  prefabName: Enemy1
-  speed: 2
-  maxHitPoints: 20
-  score: 10
-  money: 5
+  enemyName: Swarmer
+  speed: 3
+  maxHitPoints: 10
+  score: 20
+  money: 20

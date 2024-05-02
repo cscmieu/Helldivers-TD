@@ -35,12 +35,12 @@ namespace Shop.Scripts
         {
             if (Input.GetKey(KeyCode.E))
             {
-                transform.Rotate(Vector3.up, -_cameraRotationSpeed * Time.deltaTime);
+                transform.Rotate(Vector3.up, _cameraRotationSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.Q))
             {
-                transform.Rotate(Vector3.up, _cameraRotationSpeed * Time.deltaTime);
+                transform.Rotate(Vector3.up, -_cameraRotationSpeed * Time.deltaTime);
             }
         }
     }

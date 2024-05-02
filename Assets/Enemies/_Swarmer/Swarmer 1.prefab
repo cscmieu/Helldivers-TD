@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cb3915e7557d86e45addac8a1fbfb20b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -530,7 +530,7 @@ PrefabInstance:
     - target: {fileID: 2944017770083481432, guid: e50c35e582c9e7b40848ff91b4db0eb8, type: 3}
       propertyPath: enemyData
       value: 
-      objectReference: {fileID: 11400000, guid: ff85fe85d4f236944b0727a1d16055b6, type: 2}
+      objectReference: {fileID: 11400000, guid: ff6c73cd11e5cc04abc14c92aac0e42e, type: 2}
     - target: {fileID: 4502790485155929992, guid: e50c35e582c9e7b40848ff91b4db0eb8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -573,7 +573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6035341643593149020, guid: e50c35e582c9e7b40848ff91b4db0eb8, type: 3}
       propertyPath: m_Name
-      value: Enemy1
+      value: Swarmer 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -615,5 +615,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0.5, z: 0}

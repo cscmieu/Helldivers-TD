@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: MachineGunData
   m_EditorClassIdentifier: 
   turretName: Machine Gun
-  range: 3
+  range: 5
   damagePerBullet: 2
   shotsPerSecond: 2
-  turretCost: 8
+  turretCost: 60
   upgradeStats:
   - Damage
   - Time Between Shots
