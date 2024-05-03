@@ -1,6 +1,5 @@
 using System.Collections;
 using Singletons;
-using TMPro;
 using UnityEngine;
 
 namespace Building_Placement

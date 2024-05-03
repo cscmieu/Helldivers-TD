@@ -1,5 +1,4 @@
 using Singletons;
-using TMPro;
 using UnityEngine;
 
 namespace Map
@@ -8,14 +7,14 @@ namespace Map
     {
         public  float     rotationSpeed = 100f;
         public  float     moveSpeed     = 10f;
+        public  Camera    mainCamera;
         private Vector3   _movement;
-        private Camera    _mainCamera;
         private Transform _mainCameraTransform;
 
         private void Awake()
         {
-            _mainCamera = Camera.main;
-            if (_mainCamera != null) _mainCameraTransform = _mainCamera.transform;
+            mainCamera = Camera.main;
+            if (mainCamera != null) _mainCameraTransform = mainCamera.transform;
         }
 
         private void Update()

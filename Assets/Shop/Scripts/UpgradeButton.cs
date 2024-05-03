@@ -9,12 +9,7 @@ namespace Shop.Scripts
     {
         [SerializeField] private TMP_Text costText;
         [SerializeField] private Button   upgradeButton;
-        private                  float    _cameraRotationSpeed;
 
-        private void Awake()
-        {
-            _cameraRotationSpeed = CameraMover.Instance.rotationSpeed;
-        }
 
         public void SwitchVisibility()
         {
@@ -33,15 +28,7 @@ namespace Shop.Scripts
 
         private void Update()
         {
-            if (Input.GetKey(KeyCode.E))
-            {
-                transform.Rotate(Vector3.up, _cameraRotationSpeed * Time.deltaTime);
-            }
-
-            if (Input.GetKey(KeyCode.Q))
-            {
-                transform.Rotate(Vector3.up, -_cameraRotationSpeed * Time.deltaTime);
-            }
+            transform.rotation = Quaternion.Euler(0f,CameraMover.Instance.mainCamera.transform.rotation.eulerAngles.y, 0f);
         }
     }
 }

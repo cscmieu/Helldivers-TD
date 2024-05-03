@@ -17,3 +17,4 @@ MonoBehaviour:
   maxHitPoints: 500
   score: 1000
   money: 100
+  level: 1

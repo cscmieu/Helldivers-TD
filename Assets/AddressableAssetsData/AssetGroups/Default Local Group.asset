@@ -17,18 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 01064ff5c69c8054387997ede3e41f96
   m_SerializeEntries:
-  - m_GUID: 9985670b7fd163d4bbda378cc621fdd5
-    m_Address: Assets/Enemies/_Charger/Charger.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Charger
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1e6cea7a4ba030145b8dfe106341725c
-    m_Address: Assets/Enemies/_Swarmer/Swarmer.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Swarmer
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0268a2d9667cc6a4b856ea3f57bf1540
     m_Address: Assets/Enemies/_Titan/Titan.prefab
     m_ReadOnly: 0
@@ -40,18 +28,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b3015de5ab376094e8cdcdbaaa73a7a3
-    m_Address: Assets/Enemies/_Swarmer/Swarmer 2.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 792f1cf53aaab9e44b03a22fa4a041a6
     m_Address: Assets/Enemies/_Charger/Charger 1.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9259d88119b4d814f9d524ba5791b577
-    m_Address: Assets/Enemies/_Charger/Charger 3.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

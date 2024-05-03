@@ -10,11 +10,12 @@ namespace Scoring.Scripts
 
         [Header("References")] 
         [SerializeField] private TMP_Text scoreText;
-        private int _currentScore;
-        private int _currentMult;
-        private int _currentStreak;
-        [SerializeField] private int maxMult = 10; // May be changed after testing.
-        [SerializeField] private int maxStreak = 15; // May be changed after testing.
+        [SerializeField] private TMP_Text multiplierText;
+        [SerializeField] private int      maxMult   = 10; // May be changed after testing.
+        [SerializeField] private int      maxStreak = 15; // May be changed after testing.
+        private                  int      _currentScore;
+        private                  int      _currentMultiplier;
+        private                  int      _currentStreak;
 
         #endregion
         
@@ -22,7 +23,7 @@ namespace Scoring.Scripts
         private void Start()
         {
             SetScore(0);
-            _currentMult = 1;
+            _currentMultiplier = 1;
             _currentStreak = 0;
         }
 
@@ -31,7 +32,7 @@ namespace Scoring.Scripts
          * Adds the value to the current score.
          * Removes the value if value < 0.
          */
-        public void AddScore(int value)
+        private void AddScore(int value)
         {
             _currentScore  += value;
             scoreText.text =  _currentScore.ToString();
@@ -43,9 +44,9 @@ namespace Scoring.Scripts
          */
         public void ScoreByDeath(int enemyScore)
         {
-            if (_currentMult < 0)
+            if (_currentMultiplier < 0)
             {
-                _currentMult = 1;
+                _currentMultiplier = 1;
                 _currentStreak = 0;
             }
 
@@ -54,11 +55,12 @@ namespace Scoring.Scripts
             else
             {
                 _currentStreak = 0;
-                if (_currentMult < maxMult)
-                    _currentMult++;
+                if (_currentMultiplier < maxMult)
+                    _currentMultiplier++;
             }
             
-            AddScore(enemyScore * _currentMult);
+            AddScore(enemyScore * _currentMultiplier);
+            multiplierText.text = "x " + _currentMultiplier;
         }
 
         
@@ -67,9 +69,9 @@ namespace Scoring.Scripts
          */
         public void ScoreByEndOfPath(int enemyScore)
         {
-            if (_currentMult > 0)
+            if (_currentMultiplier > 0)
             {
-                _currentMult = -1;
+                _currentMultiplier = -1;
                 _currentStreak = 0;
             }
             
@@ -78,11 +80,12 @@ namespace Scoring.Scripts
             else
             {
                 _currentStreak = 0;
-                if (_currentMult > -maxMult)
-                    _currentMult--;
+                if (_currentMultiplier > -maxMult)
+                    _currentMultiplier--;
             }
             
-            AddScore(enemyScore * _currentMult);
+            AddScore(enemyScore * _currentMultiplier);
+            multiplierText.text = "x " + _currentMultiplier;
         }
         
 

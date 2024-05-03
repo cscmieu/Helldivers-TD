@@ -1,7 +1,6 @@
-using Enemies.Scripts;
 using UnityEngine;
 
-namespace Enemy.Scripts
+namespace Enemies.Scripts
 {
     public class EnemyControl : MonoBehaviour
     {
@@ -12,7 +11,7 @@ namespace Enemy.Scripts
         private int _money; // NYI
         
         [Header("Script References")] 
-        [SerializeField] private EnemyDataScriptable enemyData;
+        public EnemyDataScriptable enemyData;
         [SerializeField] private EnemyHealthManager healthManager;
         [SerializeField] private EnemyBehavior enemyBehavior;
 
@@ -20,9 +19,10 @@ namespace Enemy.Scripts
 
         private void Awake()
         {
-            _score = enemyData.score;
-            _money = enemyData.money;
-            healthManager.SetHitPoints(enemyData.maxHitPoints);
+            enemyData.level = Spawner.Scripts.Spawner.Instance.currentWaveLevel;
+            _score          = enemyData.score * enemyData.level;
+            _money          = enemyData.money * enemyData.level;
+            healthManager.SetHitPoints(enemyData.maxHitPoints * enemyData.level);
             enemyBehavior.SetSpeed(enemyData.speed);
         }
 

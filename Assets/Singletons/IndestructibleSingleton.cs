@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
 namespace Singletons
 {
-    public class UndestructibleSingleton<T> : MonoBehaviour where T : Component
+    public class IndestructibleSingleton<T> : MonoBehaviour where T : Component
     {
         private static T _instance;
 
@@ -14,7 +13,7 @@ namespace Singletons
                 if (_instance is not null) return _instance;
                 _instance = (T)FindObjectOfType(typeof(T));
                 if (_instance is not null) return _instance;
-                SetupIstance();
+                SetupInstance();
                 return _instance;
             }
         }
@@ -24,7 +23,7 @@ namespace Singletons
             RemoveDuplicates();
         }
 
-        private static void SetupIstance()
+        private static void SetupInstance()
         {
             var blankGameObject = new GameObject 
                                   {

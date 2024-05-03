@@ -44,34 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f874f07e75c784446a0048657252db63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destination: {fileID: 0}
   timeBetweenSwarmers: 0.1
-  timeBetweenChargers: 1
+  timeBetweenChargers: 3
   timeBetweenPseudoWaves: 1
   numberOfSwarmersPerWave: 5
   numberOfChargersPerWave: 3
   swarmerGameObjects:
-  - m_AssetGUID: c68293ff078b7a64eb3ba7bf237a86e5
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  - m_AssetGUID: b3015de5ab376094e8cdcdbaaa73a7a3
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  - m_AssetGUID: 1e6cea7a4ba030145b8dfe106341725c
+    m_AssetGUID: c68293ff078b7a64eb3ba7bf237a86e5
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   chargerGameObjects:
-  - m_AssetGUID: 792f1cf53aaab9e44b03a22fa4a041a6
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  - m_AssetGUID: 9985670b7fd163d4bbda378cc621fdd5
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  - m_AssetGUID: 9259d88119b4d814f9d524ba5791b577
+    m_AssetGUID: 792f1cf53aaab9e44b03a22fa4a041a6
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
@@ -80,4 +65,5 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  destination: {fileID: 0}
+  waveNumber: {fileID: 0}
+  enemiesLeft: {fileID: 0}

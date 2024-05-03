@@ -13,7 +13,7 @@ namespace Singletons
                 if (_instance is not null) return _instance;
                 _instance = (T)FindObjectOfType(typeof(T));
                 if (_instance is not null) return _instance;
-                SetupIstance();
+                SetupInstance();
                 return _instance;
             }
         }
@@ -23,7 +23,7 @@ namespace Singletons
             RemoveDuplicates();
         }
 
-        private static void SetupIstance()
+        private static void SetupInstance()
         {
             var blankGameObject = new GameObject 
                                   {

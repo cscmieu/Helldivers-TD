@@ -1,5 +1,5 @@
 using System.Collections;
-using Enemy.Scripts;
+using Enemies.Scripts;
 using Scoring.Scripts;
 using Shop.Scripts;
 using UnityEngine;

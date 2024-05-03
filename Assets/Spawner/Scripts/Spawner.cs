@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Singletons;
 using TMPro;
 using UnityEngine;
@@ -9,19 +8,20 @@ namespace Spawner.Scripts
 {
     public class Spawner : SimpleSingleton<Spawner>
     {
-        public                   Transform                      destination;
-        [SerializeField] private float                          timeBetweenSwarmers     = 0.1f;
-        [SerializeField] private float                          timeBetweenChargers     = 1f;
-        [SerializeField] private float                          timeBetweenPseudoWaves  = 1f;
-        [SerializeField] private int                            numberOfSwarmersPerWave = 5;
-        [SerializeField] private int                            numberOfChargersPerWave = 3;
-        [SerializeField] private List<AssetReferenceGameObject> swarmerGameObjects;
-        [SerializeField] private List<AssetReferenceGameObject> chargerGameObjects;
-        [SerializeField] private AssetReferenceGameObject       titanGameObject;
-        [SerializeField] private TMP_Text                       waveNumber;
-        [SerializeField] private TMP_Text                       enemiesLeft;
-        private                  Transform                      _transform;
-        private                  int                            _currentWaveId;
+        public                   Transform                destination;
+        public                   int                      currentWaveLevel;
+        [SerializeField] private float                    timeBetweenSwarmers     = 0.1f;
+        [SerializeField] private float                    timeBetweenChargers     = 1f;
+        [SerializeField] private float                    timeBetweenPseudoWaves  = 1f;
+        [SerializeField] private int                      numberOfSwarmersPerWave = 5;
+        [SerializeField] private int                      numberOfChargersPerWave = 3;
+        [SerializeField] private AssetReferenceGameObject swarmerGameObjects;
+        [SerializeField] private AssetReferenceGameObject chargerGameObjects;
+        [SerializeField] private AssetReferenceGameObject titanGameObject;
+        [SerializeField] private TMP_Text                 waveNumber;
+        [SerializeField] private TMP_Text                 enemiesLeft;
+        private                  Transform                _transform;
+        private                  int                      _currentWaveId;
 
         private void Awake()
         {
@@ -30,34 +30,20 @@ namespace Spawner.Scripts
 
     #region Loading Of Adressables
 
-        private void LoadSwarmer(int level)
+        private void LoadSwarmer()
         {
-            swarmerGameObjects[level].InstantiateAsync(_transform.position, Quaternion.identity, _transform);
+            swarmerGameObjects.InstantiateAsync(_transform.position, Quaternion.identity, _transform);
         }
         
-        private void LoadCharger(int level)
+        private void LoadCharger()
         {
-            chargerGameObjects[level].InstantiateAsync(_transform.position, Quaternion.identity, _transform);
+            chargerGameObjects.InstantiateAsync(_transform.position, Quaternion.identity, _transform);
         }
         
         private void LoadTitan()
         {
             titanGameObject.InstantiateAsync(_transform.position, Quaternion.identity, _transform);
         }
-        //
-        // private void InstantiateEnemy(AsyncOperationHandle<GameObject> obj)
-        // {
-        //     if (obj.Status == AsyncOperationStatus.Succeeded)
-        //     {
-        //         var pendingEnemy = Instantiate(obj.Result, _transform.position, Quaternion.identity);
-        //         if (pendingEnemy.TryGetComponent<EnemyBehavior>(out var enemyScript))
-        //         {
-        //             enemyScript.SetDestination(destination);
-        //         }
-        //         return;
-        //     }
-        //     Debug.LogError("Enemy Loading Failed");
-        // }
 
     #endregion
 
@@ -65,28 +51,28 @@ namespace Spawner.Scripts
 
         #region Wave Spawners
             
-        private IEnumerator SpawnWave1(int level)
+        private IEnumerator SpawnWave1()
         {
             enemiesLeft.text = 10.ToString();
-            StartCoroutine(SpawnSwarmerBreach(numberOfSwarmersPerWave, level));
+            StartCoroutine(SpawnSwarmerBreach(numberOfSwarmersPerWave));
             yield return new WaitForSeconds(timeBetweenPseudoWaves + numberOfSwarmersPerWave * timeBetweenSwarmers);
-            StartCoroutine(SpawnSwarmerBreach(numberOfSwarmersPerWave, level));
+            StartCoroutine(SpawnSwarmerBreach(numberOfSwarmersPerWave));
             yield return null;
         }
         
-        private IEnumerator SpawnWave2(int level)
+        private IEnumerator SpawnWave2()
         {
             enemiesLeft.text = 3.ToString();
-            StartCoroutine(SpawnChargerBreach(numberOfChargersPerWave, level));
+            StartCoroutine(SpawnChargerBreach(numberOfChargersPerWave));
             yield return null;
         }
         
-        private IEnumerator SpawnWave3(int level)
+        private IEnumerator SpawnWave3()
         {
             enemiesLeft.text = 7.ToString();
-            StartCoroutine(SpawnSwarmerBreach(numberOfSwarmersPerWave, level));
+            StartCoroutine(SpawnSwarmerBreach(numberOfSwarmersPerWave));
             yield return new WaitForSeconds(timeBetweenPseudoWaves + numberOfSwarmersPerWave * timeBetweenSwarmers);
-            StartCoroutine(SpawnChargerBreach(2, level));
+            StartCoroutine(SpawnChargerBreach(2));
             yield return null;
         }
 
@@ -101,16 +87,16 @@ namespace Spawner.Scripts
 
         #region Swarmer Spawers
         
-        private void SpawnSwarmer(int level)
+        private void SpawnSwarmer()
         {
-            LoadSwarmer(level);
+            LoadSwarmer();
         }
 
-        private IEnumerator SpawnSwarmerBreach(int numberOfSwarmers, int level)
+        private IEnumerator SpawnSwarmerBreach(int numberOfSwarmers)
         {
             for (var i = 0; i < numberOfSwarmers; i++)
             {
-                SpawnSwarmer(level);
+                SpawnSwarmer();
                 yield return new WaitForSeconds(timeBetweenSwarmers);
             }
             yield return null;
@@ -120,16 +106,16 @@ namespace Spawner.Scripts
 
         #region Charger Spawners
 
-        private void SpawnCharger(int level)
+        private void SpawnCharger()
         {
-            LoadCharger(level);
+            LoadCharger();
         }
 
-        private IEnumerator SpawnChargerBreach(int numberOfChargers, int level)
+        private IEnumerator SpawnChargerBreach(int numberOfChargers)
         {
             for (var i = 0; i < numberOfChargers; i++)
             {
-                SpawnCharger(level);
+                SpawnCharger();
                 yield return new WaitForSeconds(timeBetweenChargers);
             }
             yield return null;
@@ -150,25 +136,25 @@ namespace Spawner.Scripts
 
         public void SendNextWave()
         {
+            
             if (_currentWaveId % 10 == 9)
             {
                 StartCoroutine(SpawnBossWave());
                 _currentWaveId++;
                 return;
             }
-
-            var currentWaveLevel = _currentWaveId / 3;
-            currentWaveLevel %= 3;
+            
             switch (_currentWaveId % 3)
             {
                 case 0 :
-                    StartCoroutine(SpawnWave1(currentWaveLevel));
+                    currentWaveLevel++;
+                    StartCoroutine(SpawnWave1());
                     break;
                 case 1 :
-                    StartCoroutine(SpawnWave2(currentWaveLevel));
+                    StartCoroutine(SpawnWave2());
                     break;
                 case 2 :
-                    StartCoroutine(SpawnWave3(currentWaveLevel));
+                    StartCoroutine(SpawnWave3());
                     break;
             }
             _currentWaveId++;

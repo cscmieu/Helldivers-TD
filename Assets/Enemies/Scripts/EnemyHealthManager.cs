@@ -1,7 +1,7 @@
 using Scoring.Scripts;
 using UnityEngine;
 
-namespace Enemy.Scripts
+namespace Enemies.Scripts
 {
     public class EnemyHealthManager : MonoBehaviour
     {
