@@ -13,7 +13,6 @@ namespace Map
 
         private void Awake()
         {
-            mainCamera = Camera.main;
             if (mainCamera != null) _mainCameraTransform = mainCamera.transform;
         }
 

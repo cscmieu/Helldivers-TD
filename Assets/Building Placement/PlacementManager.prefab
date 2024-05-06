@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 819450965151899875}
   - component: {fileID: 7135075932121995170}
   - component: {fileID: 4219412850273947627}
-  - component: {fileID: 2638427887550829989}
   m_Layer: 0
   m_Name: PlacementManager
   m_TagString: Untagged
@@ -63,17 +62,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicationPanel: {fileID: 0}
---- !u!114 &2638427887550829989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3855012374450339015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb18637352b4ea0468dd495696fdc7b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 100
-  moveSpeed: 10
+  defaultCursor: {fileID: 2800000, guid: b4ec5515b194bd244a5f898d0b34e408, type: 3}
+  placingCursor: {fileID: 2800000, guid: 41484bcd7f828414d8f2e9300a532387, type: 3}

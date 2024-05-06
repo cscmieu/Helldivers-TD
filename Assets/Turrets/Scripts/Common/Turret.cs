@@ -13,6 +13,9 @@ namespace Turrets.Scripts.Common
         [SerializeField] private Transform              muzzlePoint;
         [SerializeField] private TrailRenderer          bulletTracer;
         [SerializeField] private UpgradeButton          upgradeButton;
+        [SerializeField] private Transform              rotatingPart;
+        [SerializeField] private AudioClip              shotSound;
+        private                  AudioSource            _audioSource;
         private                  EnemyHealthManager     _target;
         private                  float                  _range;
         private                  float                  _damagePerHit;
@@ -24,10 +27,11 @@ namespace Turrets.Scripts.Common
 
         private void Awake()
         {
-            _range                 = turretData.range;
-            _damagePerHit          = turretData.damagePerBullet;
-            _turretCost            = turretData.turretCost;
-            _timeBetweenShots      = 1f / turretData.shotsPerSecond;
+            _range            = turretData.range;
+            _damagePerHit     = turretData.damagePerBullet;
+            _turretCost       = turretData.turretCost;
+            _timeBetweenShots = 1f / turretData.shotsPerSecond;
+            _audioSource      = GetComponent<AudioSource>();
         }
 
         private void Start()
@@ -44,13 +48,14 @@ namespace Turrets.Scripts.Common
 
         private void Shoot()
         {
-            if (_lastTimeShot > 0) return;
             _target = null;
             if (!AssessTarget()) return;
+            if (_lastTimeShot > 0) return;
             _target!.TakeDamage(_damagePerHit);
             _lastTimeShot = _timeBetweenShots;
             var tracer = Instantiate(bulletTracer, muzzlePoint.position, Quaternion.identity);
             StartCoroutine(InstantiateTracer(tracer, _target.transform.position));
+            _audioSource.PlayOneShot(shotSound);
         }
 
         private IEnumerator InstantiateTracer(TrailRenderer tracer, Vector3 target)
@@ -72,9 +77,9 @@ namespace Turrets.Scripts.Common
             // OverlapSphereNonAlloc marche pas T_T
             var enemiesInRange = Physics.OverlapSphere(transform.position, _range, enemyLayer);
             if (enemiesInRange.Length == 0) return false; // No Enemies in Range
-            if (!enemiesInRange[0].TryGetComponent<EnemyHealthManager>(out var enemyHealth)) 
-                Debug.LogError("Enemy doesn't have HealthManager"); // Failsafe if an Enemy has no health manager script
+            if (!enemiesInRange[0].TryGetComponent<EnemyHealthManager>(out var enemyHealth) && !enemyHealth.enabled) return false; //Enemy is already destroyed;
             _target = enemyHealth;
+            rotatingPart.LookAt(enemyHealth.transform);
             return true;
         }
 

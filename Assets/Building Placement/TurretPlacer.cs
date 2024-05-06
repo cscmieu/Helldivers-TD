@@ -2,15 +2,16 @@ using Scoring.Scripts;
 using Singletons;
 using TMPro;
 using Turrets.Scripts.Common;
+using UI;
 using UnityEngine;
 
 namespace Building_Placement
 {
     public class TurretPlacer : SimpleSingleton<TurretPlacer>
     {
-        [SerializeField] private TMP_Text indicationPanel;
-        private                  Turret     _turretToPlace;
-        private                  bool       _placing;
+        [SerializeField] private TMP_Text  indicationPanel;
+        private                  Turret    _turretToPlace;
+        private                  bool      _placing;
 
 
         private void PlaceTurret()
@@ -32,6 +33,7 @@ namespace Building_Placement
             if (MoneyManager.Instance.GetMoney() >= _turretToPlace.turretData.turretCost)
             {
                 _placing = true;
+                CrosshairChanger.Instance.OnEnablePlacing();
                 DisplayIndication();
                 return;
             }
@@ -42,6 +44,7 @@ namespace Building_Placement
         private void DisablePlacing()
         {
             _placing = false;
+            CrosshairChanger.Instance.OnDisablePlacing();
             HideIndication();
         }
 

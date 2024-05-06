@@ -24,10 +24,9 @@ namespace Enemies.Scripts
             _agent.SetDestination(_destinationPoint.position);
         }
 
-
-        public void SetDestination(Transform target)
+        public void DestroyAgent()
         {
-            _destinationPoint = target;
+            Destroy(_agent);
         }
 
 
@@ -36,6 +35,11 @@ namespace Enemies.Scripts
         public void SetSpeed(float newSpeed)
         {
             _agent.speed = newSpeed;
+        }
+        
+        public void SetDestination(Transform target)
+        {
+            _destinationPoint = target;
         }
 
         #endregion

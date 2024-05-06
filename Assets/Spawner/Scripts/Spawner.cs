@@ -20,12 +20,15 @@ namespace Spawner.Scripts
         [SerializeField] private AssetReferenceGameObject titanGameObject;
         [SerializeField] private TMP_Text                 waveNumber;
         [SerializeField] private TMP_Text                 enemiesLeft;
+        [SerializeField] private AudioClip                spawnSound;
+        private                  AudioSource              _audioSource;
         private                  Transform                _transform;
         private                  int                      _currentWaveId;
 
         private void Awake()
         {
-            _transform = transform;
+            _transform   = transform;
+            _audioSource = GetComponent<AudioSource>();
         }
 
     #region Loading Of Adressables
@@ -33,16 +36,19 @@ namespace Spawner.Scripts
         private void LoadSwarmer()
         {
             swarmerGameObjects.InstantiateAsync(_transform.position, Quaternion.identity, _transform);
+            _audioSource.PlayOneShot(spawnSound);
         }
         
         private void LoadCharger()
         {
             chargerGameObjects.InstantiateAsync(_transform.position, Quaternion.identity, _transform);
+            _audioSource.PlayOneShot(spawnSound);
         }
         
         private void LoadTitan()
         {
             titanGameObject.InstantiateAsync(_transform.position, Quaternion.identity, _transform);
+            _audioSource.PlayOneShot(spawnSound);
         }
 
     #endregion

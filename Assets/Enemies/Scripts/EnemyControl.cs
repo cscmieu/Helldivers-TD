@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Enemies.Scripts
@@ -21,12 +22,17 @@ namespace Enemies.Scripts
         {
             enemyData.level = Spawner.Scripts.Spawner.Instance.currentWaveLevel;
             _score          = enemyData.score * enemyData.level;
-            _money          = enemyData.money * enemyData.level;
+            _money          = enemyData.money + enemyData.money / 2 * (enemyData.level-1);
             healthManager.SetHitPoints(enemyData.maxHitPoints * enemyData.level);
             enemyBehavior.SetSpeed(enemyData.speed);
         }
 
-        #region Getters and Setters
+        private void Update()
+        {
+            if (!healthManager.doomed) return;
+            enemyBehavior.DestroyAgent(); }
+
+    #region Getters and Setters
 
         public int GetScore()
         {
