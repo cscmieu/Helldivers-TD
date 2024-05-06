@@ -30,9 +30,11 @@ namespace Enemies.Scripts
         private void LateUpdate()
         {
             if (!_doomed) return;
-            GameObject o;
-            (o = gameObject).SetActive(false);
-            Destroy(o, 1f);
+            //GameObject o;
+            //(o = gameObject).SetActive(false);
+            //Destroy(o, 1f);
+            gameObject.GetComponentInChildren<Animator>().SetTrigger("DeathByTurret");
+            Destroy(gameObject, 2f);
             ScoreManager.Instance.ScoreByDeath(_enemyControl.GetScore());
             MoneyManager.Instance.AddMoney(_enemyControl.GetMoney());
         }
