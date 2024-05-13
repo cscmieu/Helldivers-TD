@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using Singletons;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Serialization;
 
 namespace Spawner.Scripts
 {
@@ -10,6 +12,7 @@ namespace Spawner.Scripts
     {
         public                   Transform                destination;
         public                   int                      currentWaveLevel;
+        public                   int                      enemyCount;
         [SerializeField] private float                    timeBetweenSwarmers     = 0.1f;
         [SerializeField] private float                    timeBetweenChargers     = 1f;
         [SerializeField] private float                    timeBetweenPseudoWaves  = 1f;
@@ -31,24 +34,32 @@ namespace Spawner.Scripts
             _audioSource = GetComponent<AudioSource>();
         }
 
+        private void Update()
+        {
+            enemiesLeft.text = enemyCount.ToString();
+        }
+
     #region Loading Of Adressables
 
         private void LoadSwarmer()
         {
             swarmerGameObjects.InstantiateAsync(_transform.position, Quaternion.identity, _transform);
             _audioSource.PlayOneShot(spawnSound);
+            enemyCount++;
         }
         
         private void LoadCharger()
         {
             chargerGameObjects.InstantiateAsync(_transform.position, Quaternion.identity, _transform);
             _audioSource.PlayOneShot(spawnSound);
+            enemyCount++;
         }
         
         private void LoadTitan()
         {
             titanGameObject.InstantiateAsync(_transform.position, Quaternion.identity, _transform);
             _audioSource.PlayOneShot(spawnSound);
+            enemyCount++;
         }
 
     #endregion
@@ -59,7 +70,6 @@ namespace Spawner.Scripts
             
         private IEnumerator SpawnWave1()
         {
-            enemiesLeft.text = 10.ToString();
             StartCoroutine(SpawnSwarmerBreach(numberOfSwarmersPerWave));
             yield return new WaitForSeconds(timeBetweenPseudoWaves + numberOfSwarmersPerWave * timeBetweenSwarmers);
             StartCoroutine(SpawnSwarmerBreach(numberOfSwarmersPerWave));
@@ -68,14 +78,12 @@ namespace Spawner.Scripts
         
         private IEnumerator SpawnWave2()
         {
-            enemiesLeft.text = 3.ToString();
             StartCoroutine(SpawnChargerBreach(numberOfChargersPerWave));
             yield return null;
         }
         
         private IEnumerator SpawnWave3()
         {
-            enemiesLeft.text = 7.ToString();
             StartCoroutine(SpawnSwarmerBreach(numberOfSwarmersPerWave));
             yield return new WaitForSeconds(timeBetweenPseudoWaves + numberOfSwarmersPerWave * timeBetweenSwarmers);
             StartCoroutine(SpawnChargerBreach(2));
@@ -84,7 +92,6 @@ namespace Spawner.Scripts
 
         private IEnumerator SpawnBossWave()
         {
-            enemiesLeft.text = 1.ToString();
             SpawnTitan();
             yield return null;
         }
@@ -142,11 +149,11 @@ namespace Spawner.Scripts
 
         public void SendNextWave()
         {
-            
             if (_currentWaveId % 10 == 9)
             {
                 StartCoroutine(SpawnBossWave());
                 _currentWaveId++;
+                waveNumber.text = _currentWaveId.ToString();
                 return;
             }
             

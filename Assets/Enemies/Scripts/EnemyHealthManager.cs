@@ -31,6 +31,7 @@ namespace Enemies.Scripts
             Destroy(gameObject, 2f);
             gameObject.layer = 10;
             _audioSource.PlayOneShot(deathSound);
+            Spawner.Scripts.Spawner.Instance.enemyCount--;
         }
 
         

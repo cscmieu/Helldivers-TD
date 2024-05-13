@@ -113,7 +113,7 @@ namespace Turrets.Scripts.Common
                 upgradeButton.SwitchUpgrade();
                 return;
             }
-            _levelUpCost = _turretCost * (_level + 1) / 2;
+            _levelUpCost += _turretCost / 2;
             upgradeButton.UpdateCost(_levelUpCost.ToString());
         }
     }

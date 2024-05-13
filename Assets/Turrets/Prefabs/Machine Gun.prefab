@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8801636216742574008}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MuzzlePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,10 +39,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1508387528328777330, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1684782651009592527, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
       propertyPath: shotSound
       value: 
-      objectReference: {fileID: 8300000, guid: 9aaeb1ba275ac8a4d841628f76b8ddfd, type: 3}
+      objectReference: {fileID: 8300000, guid: 019287e748f94014ea8e3104fcad05d1, type: 3}
     - target: {fileID: 1684782651009592527, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
       propertyPath: turretData
       value: 
@@ -103,6 +107,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5444554080049293189, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015449248897995598, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6015449248897995598, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -123,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.7960785
       objectReference: {fileID: 0}
+    - target: {fileID: 7391009467819800600, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8099913143865524434, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -134,6 +150,14 @@ PrefabInstance:
     - target: {fileID: 8099913143865524434, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381135292861827878, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193433548805485766, guid: aacc05968ba53c84f9594fb58beab604, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -157,9 +181,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1521827203829353932}
     m_Modifications:
+    - target: {fileID: 1000010186546986, guid: 9b3a643ca887918468955b42c4531666, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010528715726, guid: 9b3a643ca887918468955b42c4531666, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1000011222192992, guid: 9b3a643ca887918468955b42c4531666, type: 3}
       propertyPath: m_Name
       value: Turret 1d
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011222192992, guid: 9b3a643ca887918468955b42c4531666, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012439138410, guid: 9b3a643ca887918468955b42c4531666, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012663579438, guid: 9b3a643ca887918468955b42c4531666, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012782717092, guid: 9b3a643ca887918468955b42c4531666, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013045632560, guid: 9b3a643ca887918468955b42c4531666, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4000010388087656, guid: 9b3a643ca887918468955b42c4531666, type: 3}
       propertyPath: m_LocalRotation.w

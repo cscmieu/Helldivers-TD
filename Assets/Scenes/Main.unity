@@ -10745,7 +10745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &682902779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20940,10 +20940,6 @@ PrefabInstance:
       propertyPath: enemiesLeft
       value: 
       objectReference: {fileID: 1643084568}
-    - target: {fileID: 150870163811462669, guid: 31edb09260b8357478bcfc7aa683ce02, type: 3}
-      propertyPath: timeBetweenChargers
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 2714875184742379344, guid: 31edb09260b8357478bcfc7aa683ce02, type: 3}
       propertyPath: m_Name
       value: Spawner

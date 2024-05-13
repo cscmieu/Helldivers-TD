@@ -22,7 +22,7 @@ namespace Enemies.Scripts
         {
             enemyData.level = Spawner.Scripts.Spawner.Instance.currentWaveLevel;
             _score          = enemyData.score * enemyData.level;
-            _money          = enemyData.money + enemyData.money / 2 * (enemyData.level-1);
+            _money          = enemyData.money + enemyData.money / 5 * (enemyData.level-1);
             healthManager.SetHitPoints(enemyData.maxHitPoints * enemyData.level);
             enemyBehavior.SetSpeed(enemyData.speed);
         }
