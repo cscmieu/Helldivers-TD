@@ -49,6 +49,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   placementWarning: {fileID: 0}
+  minDistance: 5
 --- !u!114 &4219412850273947627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +62,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860d54e0f62efc04baaa3ee5936f79ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placing: 0
   indicationPanel: {fileID: 0}
-  defaultCursor: {fileID: 2800000, guid: b4ec5515b194bd244a5f898d0b34e408, type: 3}
-  placingCursor: {fileID: 2800000, guid: 41484bcd7f828414d8f2e9300a532387, type: 3}

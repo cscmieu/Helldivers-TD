@@ -9,9 +9,9 @@ namespace Building_Placement
 {
     public class TurretPlacer : SimpleSingleton<TurretPlacer>
     {
-        [SerializeField] private TMP_Text  indicationPanel;
-        private                  Turret    _turretToPlace;
-        private                  bool      _placing;
+        public                   bool     placing;
+        [SerializeField] private TMP_Text indicationPanel;
+        private                  Turret   _turretToPlace;
 
 
         private void PlaceTurret()
@@ -30,20 +30,20 @@ namespace Building_Placement
 
         public void EnablePlacing()
         {
-            if (MoneyManager.Instance.GetMoney() >= _turretToPlace.turretData.turretCost)
+            if (MoneyManager.Instance.GetMoney() < _turretToPlace.turretData.turretCost)
             {
-                _placing = true;
-                CrosshairChanger.Instance.OnEnablePlacing();
-                DisplayIndication();
+                StopCoroutine(MoneyManager.Instance.DisplayWarning());
+                StartCoroutine(MoneyManager.Instance.DisplayWarning());
                 return;
             }
-            StopCoroutine(MoneyManager.Instance.DisplayWarning());
-            StartCoroutine(MoneyManager.Instance.DisplayWarning());
+            placing = true;
+            CrosshairChanger.Instance.OnEnablePlacing();
+            DisplayIndication();
         }
 
         private void DisablePlacing()
         {
-            _placing = false;
+            placing = false;
             CrosshairChanger.Instance.OnDisablePlacing();
             HideIndication();
         }
@@ -61,11 +61,11 @@ namespace Building_Placement
         
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && _placing)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && placing)
             {
                 PlaceTurret();
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse1) && _placing)
+            else if (Input.GetKeyDown(KeyCode.Mouse1) && placing)
             {
                 DisablePlacing();
             }

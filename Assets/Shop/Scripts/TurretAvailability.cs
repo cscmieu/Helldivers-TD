@@ -1,3 +1,4 @@
+using Building_Placement;
 using Scoring.Scripts;
 using TMPro;
 using Turrets.Scripts.Common;
@@ -23,7 +24,7 @@ namespace Shop.Scripts
 
         private void Update()
         {
-            if (turret.turretCost > MoneyManager.Instance.GetMoney())
+            if (turret.turretCost > MoneyManager.Instance.GetMoney() || TurretPlacer.Instance.placing)
             {
                 _button.interactable = false;
                 return;

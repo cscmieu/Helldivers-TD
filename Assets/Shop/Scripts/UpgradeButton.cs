@@ -9,11 +9,13 @@ namespace Shop.Scripts
     {
         [SerializeField] private TMP_Text costText;
         [SerializeField] private Button   upgradeButton;
+        [SerializeField] private Image    range;
 
 
         public void SwitchVisibility()
         {
             upgradeButton.gameObject.SetActive(!upgradeButton.gameObject.activeSelf);
+            range.gameObject.SetActive(!range.gameObject.activeSelf);
         }
         
         public void SwitchUpgrade()

@@ -15,6 +15,7 @@ namespace Turrets.Scripts.Common
         [SerializeField] private UpgradeButton          upgradeButton;
         [SerializeField] private Transform              rotatingPart;
         [SerializeField] private AudioClip              shotSound;
+        [SerializeField] private RectTransform          rangeImage;
         private                  AudioSource            _audioSource;
         private                  EnemyHealthManager     _target;
         private                  float                  _range;
@@ -106,6 +107,7 @@ namespace Turrets.Scripts.Common
                     _timeBetweenShots = newValue;
                     break;
             }
+            rangeImage.sizeDelta = Vector2.one * _range * 2;
             _level++;
             if (_level > 3)
             {

@@ -19,6 +19,7 @@ namespace UI
 
         public void OnBeginHovering()
         {
+            if (_actualState == 2) return;
             Cursor.SetCursor(hoveringCursor, Vector2.zero, CursorMode.ForceSoftware);
             _actualState = 1;
         }

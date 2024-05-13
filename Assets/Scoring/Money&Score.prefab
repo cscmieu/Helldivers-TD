@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fundsMissingWarning: {fileID: 0}
+  startingMoney: 150
 --- !u!114 &2869864928155503522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,5 +60,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
+  multiplierText: {fileID: 0}
   maxMult: 10
   maxStreak: 15

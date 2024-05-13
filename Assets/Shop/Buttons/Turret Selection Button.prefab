@@ -399,7 +399,7 @@ MonoBehaviour:
         m_MethodName: SelectTurret
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 3532285101315718458, guid: 47452ce018c5c13408cccb78847b0845, type: 3}
+          m_ObjectArgument: {fileID: 3532285101315718458, guid: 0ef46e963e3582d409769e8d0df06293, type: 3}
           m_ObjectArgumentAssemblyTypeName: Turrets.Scripts.Common.Turret, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55342d4c9e3e01b448f4ffc969a5462d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turret: {fileID: 0}
+  turret: {fileID: 11400000, guid: a485c663202c14e44acf74c4ed3bf912, type: 2}
   turretIdText: {fileID: 969182168327116987}
   costText: {fileID: 5661030156271496410}
 --- !u!114 &-2109304414093888732
@@ -450,7 +450,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6760648874299864647, guid: 8bb1379ea8c2b7143a58f31ead344dd7, type: 3}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UI.CrosshairChanger, Assembly-CSharp
           m_MethodName: OnBeginHovering
           m_Mode: 1
@@ -466,9 +466,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6760648874299864647, guid: 8bb1379ea8c2b7143a58f31ead344dd7, type: 3}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UI.CrosshairChanger, Assembly-CSharp
-          m_MethodName: OnEndHovering
+          m_MethodName: OnExitHovering
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
